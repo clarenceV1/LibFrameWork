@@ -4,7 +4,7 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
 
-import com.cai.framework.log.LogUtils;
+import com.example.clarence.utillibrary.log.LogFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,21 +28,21 @@ public class BaseLifecycleObserver implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void ON_CREATE() {
         if (isDebug) {
-            LogUtils.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_CREATE");
+            LogFactory.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_CREATE");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void ON_START() {
         if (isDebug) {
-            LogUtils.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_START");
+            LogFactory.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_START");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void ON_RESUME() {
         if (isDebug) {
-            LogUtils.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_RESUME");
+            LogFactory.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_RESUME");
         }
 
     }
@@ -50,14 +50,14 @@ public class BaseLifecycleObserver implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void ON_PAUSE() {
         if (isDebug) {
-            LogUtils.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_PAUSE");
+            LogFactory.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_PAUSE");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void ON_STOP() {
         if (isDebug) {
-            LogUtils.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_STOP");
+            LogFactory.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_STOP");
         }
 
     }
@@ -65,7 +65,7 @@ public class BaseLifecycleObserver implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void ON_DESTROY() {
         if (isDebug) {
-            LogUtils.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_DESTROY");
+            LogFactory.getInsatance().debug("LifecycleObserver", getClassName(), ":ON_DESTROY");
         }
     }
 }

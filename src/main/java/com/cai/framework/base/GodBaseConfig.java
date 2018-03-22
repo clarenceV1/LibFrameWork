@@ -12,6 +12,7 @@ public class GodBaseConfig {
     private Map<String, Object> switchMap = null;
 
     private static final String IS_DEBUG = "debug";
+    private static final String BASE_URL = "base_url";
 
     private static class SingletonHolder {
         private static final GodBaseConfig instance = new GodBaseConfig();
@@ -38,5 +39,16 @@ public class GodBaseConfig {
 
     public void setDebug(boolean isDebug) {
         this.switchMap.put(IS_DEBUG, isDebug);
+    }
+
+    public String getBaseUrl() {
+        if (switchMap.get(IS_DEBUG) != null) {
+            return (String) switchMap.get(IS_DEBUG);
+        }
+        return null;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.switchMap.put(BASE_URL, baseUrl);
     }
 }
