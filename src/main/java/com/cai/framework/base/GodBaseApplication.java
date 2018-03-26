@@ -5,9 +5,9 @@ import android.app.Application;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import com.cai.framework.manager.LogDock;
+import com.cai.framework.manager.NetDock;
 import com.example.clarence.datastorelibrary.store.StoreFactory;
-import com.example.clarence.netlibrary.NetFactory;
-import com.example.clarence.utillibrary.log.LogFactory;
 
 import java.util.Stack;
 
@@ -24,9 +24,8 @@ public class GodBaseApplication extends Application {
         super.onCreate();
         baseApplication = this;
         initConfig();
-        boolean isDebug = GodBaseConfig.getInsatance().isDebug();
-        initLog(isDebug);
-        initNet(isDebug);
+        NetDock.initNet();
+        LogDock.initLog();
         initStore();
         store = new Stack<>();
         registerActivityLifecycleCallbacks(new GodActivityLifecycleCallbacks(store));
@@ -36,14 +35,6 @@ public class GodBaseApplication extends Application {
         StoreFactory.init(this);
     }
 
-    private void initLog(boolean isDebug) {
-        LogFactory.getInsatance().init(1, isDebug);
-    }
-
-    private void initNet(boolean isDebug) {
-        NetFactory.getInsatance().setBaseUrl("http://www.sojson.com");
-        NetFactory.getInsatance().init(this, 1, isDebug);
-    }
 
     private void initConfig() {
         GodBaseConfig.getInsatance().setDebug(true);
