@@ -42,8 +42,8 @@ public class GodBaseConfig {
     }
 
     public String getBaseUrl() {
-        if (switchMap.get(IS_DEBUG) != null) {
-            return (String) switchMap.get(IS_DEBUG);
+        if (switchMap.get(BASE_URL) != null) {
+            return (String) switchMap.get(BASE_URL);
         }
         return null;
     }
