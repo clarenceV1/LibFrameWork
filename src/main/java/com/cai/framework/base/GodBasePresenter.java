@@ -17,7 +17,6 @@ public abstract class GodBasePresenter<V> extends BaseLifecycleObserver {
     public void init(Lifecycle lifecycle, V v) {
         this.lifecycle = lifecycle;
         this.mView = v;
-        this.isDebug = GodBaseConfig.getInsatance().isDebug();
         this.onAttached();
     }
 
