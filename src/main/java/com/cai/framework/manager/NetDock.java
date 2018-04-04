@@ -18,8 +18,7 @@ public class NetDock {
     /**
      * 初始化一次就够了
      */
-    public static void initNet() {
-        Context context = GodBaseApplication.getAppContext();
+    public static void initNet(Context context) {
         NetBaseBuild netBaseBuild = new Net1Build(context)
                 .baseUrl("http://www.sojson.com");
         NetFactory.getInsatance().init(netBaseBuild);

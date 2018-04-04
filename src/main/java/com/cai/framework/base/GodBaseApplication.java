@@ -17,15 +17,13 @@ import java.util.Stack;
 
 public class GodBaseApplication extends Application {
     private Stack<Activity> store;
-    private static GodBaseApplication baseApplication;
 
     @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void onCreate() {
         super.onCreate();
-        baseApplication = this;
         initConfig();
-        NetDock.initNet();
-        LogDock.initLog();
+        NetDock.initNet(this);
+        LogDock.initLog(this);
         initStore();
         store = new Stack<>();
         registerActivityLifecycleCallbacks(new GodActivityLifecycleCallbacks(store));
@@ -38,10 +36,6 @@ public class GodBaseApplication extends Application {
 
     private void initConfig() {
         GodBaseConfig.getInsatance().setDebug(true);
-    }
-
-    public static GodBaseApplication getAppContext() {
-        return baseApplication;
     }
 
     /**

@@ -17,8 +17,7 @@ public class LogDock {
     /**
      * 初始化一次就够了
      */
-    public static void initLog() {
-        Context context = GodBaseApplication.getAppContext();
+    public static void initLog(Context context) {
         boolean isDebug = GodBaseConfig.getInsatance().isDebug();
         LogFactory.getInsatance().init(new Log1Build(context).setDebug(isDebug));
     }
