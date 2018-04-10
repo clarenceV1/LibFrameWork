@@ -21,7 +21,7 @@ public class FrameWorkModule {
 
     @Provides
     Context provideContext() {
-        return GodBaseApplication.application;
+        return GodBaseApplication.getAppContext();
     }
 
     @Provides

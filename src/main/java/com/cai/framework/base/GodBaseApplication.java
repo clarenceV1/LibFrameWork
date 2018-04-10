@@ -20,9 +20,9 @@ import javax.inject.Inject;
 
 public class GodBaseApplication extends Application {
     private Stack<Activity> store;
-    public static GodBaseApplication application;
+    private static GodBaseApplication application;
     @Inject
-    GodBaseConfig config;
+    public GodBaseConfig config;
 
     public void onCreate() {
         super.onCreate();
@@ -34,6 +34,9 @@ public class GodBaseApplication extends Application {
         registerActivityLifecycleCallbacks(new GodActivityLifecycleCallbacks(store));
     }
 
+    public static GodBaseApplication getAppContext() {
+        return application;
+    }
     /**
      * 获取当前的Activity
      *

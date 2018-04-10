@@ -30,6 +30,7 @@ public abstract class GodBasePresenterActivity<P extends GodBasePresenter, M ext
                 mPresenter = getPresenter(presenterClass);
                 if (mPresenter != null) {
                     mPresenter.init(mRegistry,this);
+                    mPresenter.setContext(this);
                     getLifecycle().addObserver(mPresenter);
                 }
 

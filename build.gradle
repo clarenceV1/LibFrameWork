@@ -24,11 +24,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile rootProject.ext.dependencies["appcompat-v7"]
 
-    compile 'org.aspectj:aspectjrt:1.8.1'
+    compile rootProject.ext.dependencies["aspectjrt"]
 
-    provided 'com.squareup.okio:okio:1.9.0'
+    provided rootProject.ext.dependencies["okio"]
 
     //For Lifecycles, LiveData, and ViewModel
     compile rootProject.ext.dependencies["lifecycle-runtime"]

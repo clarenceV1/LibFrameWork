@@ -2,11 +2,13 @@ package com.cai.framework.base;
 
 
 import android.arch.lifecycle.Lifecycle;
+import android.content.Context;
 
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class GodBasePresenter<V> extends BaseLifecycleObserver {
     protected V mView;
+    protected Context context;
     protected CompositeDisposable mCompositeSubscription = new CompositeDisposable();
 
     /**
@@ -18,6 +20,10 @@ public abstract class GodBasePresenter<V> extends BaseLifecycleObserver {
         this.lifecycle = lifecycle;
         this.mView = v;
         this.onAttached();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     public abstract void onAttached();
