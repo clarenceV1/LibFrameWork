@@ -6,41 +6,34 @@ import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
-import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 /**
  * Created by clarence on 2018/1/11.
  */
 
-public abstract class GodBasePresenterActivity<P extends GodBasePresenter, M extends ViewDataBinding> extends DataBindingActivity<M> implements LifecycleRegistryOwner {
+public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extends DataBindingActivity<M> implements LifecycleRegistryOwner {
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
-    public P mPresenter;
+    public List<GodBasePresenter> observerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initPresenter();
+        addLifecycleObserver();
     }
 
-    public void initPresenter() {
-        try {
-            if (this instanceof GodBaseView && this.getClass().getGenericSuperclass() instanceof ParameterizedType &&
-                    ((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments().length > 0) {
-                Class presenterClass = (Class) ((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments()[0];
-                mPresenter = getPresenter(presenterClass);
-                if (mPresenter != null) {
-                    mPresenter.init(mRegistry,this);
-                    mPresenter.setContext(this);
-                    getLifecycle().addObserver(mPresenter);
-                }
-
+    private void addLifecycleObserver() {
+        observerList = getPresenters();
+        if (observerList != null) {
+            for (GodBasePresenter lifecycleObserver : observerList) {
+                lifecycleObserver.init(mRegistry, this);
+                lifecycleObserver.setContext(this);
+                getLifecycle().addObserver(lifecycleObserver);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public abstract P getPresenter(Class mPresenterClass);
+    public abstract List<GodBasePresenter> getPresenters();
 
     @Override
     public LifecycleRegistry getLifecycle() {
@@ -50,6 +43,10 @@ public abstract class GodBasePresenterActivity<P extends GodBasePresenter, M ext
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) mPresenter.onDetached();
+        if (observerList != null) {
+            for (GodBasePresenter godBasePresenter : observerList) {
+                godBasePresenter.onDetached();
+            }
+        }
     }
 }
