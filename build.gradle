@@ -31,9 +31,12 @@ dependencies {
     provided 'com.squareup.okio:okio:1.9.0'
 
     //For Lifecycles, LiveData, and ViewModel
-    compile "android.arch.lifecycle:runtime:1.0.0-alpha1"
-    compile "android.arch.lifecycle:extensions:1.0.0-alpha1"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha1"
+    compile rootProject.ext.dependencies["lifecycle-runtime"]
+    compile rootProject.ext.dependencies["lifecycle-extensions"]
+    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
+
+    compile rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
 
     //For Room
 //    compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
@@ -43,4 +46,5 @@ dependencies {
     compile project(':LibDataStore')
     compile project(':LibUtils')
     compile project(':LibNet')
+    compile project(':LibImageLoader')
 }

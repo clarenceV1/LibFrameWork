@@ -1,7 +1,6 @@
 package com.cai.framework.base;
 
 
-import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.databinding.ViewDataBinding;

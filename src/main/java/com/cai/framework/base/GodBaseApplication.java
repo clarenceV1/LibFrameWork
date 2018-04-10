@@ -5,11 +5,14 @@ import android.app.Application;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import com.cai.framework.dagger.component.DaggerFrameWorkComponent;
 import com.cai.framework.manager.LogDock;
-import com.cai.framework.manager.NetDock;
-import com.example.clarence.datastorelibrary.store.StoreFactory;
+import com.example.clarence.utillibrary.log.Log1Build;
+import com.example.clarence.utillibrary.log.LogFactory;
 
 import java.util.Stack;
+
+import javax.inject.Inject;
 
 /**
  * Created by clarence on 2018/1/11.
@@ -17,25 +20,18 @@ import java.util.Stack;
 
 public class GodBaseApplication extends Application {
     private Stack<Activity> store;
+    public static GodBaseApplication application;
+    @Inject
+    GodBaseConfig config;
 
-    @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void onCreate() {
         super.onCreate();
-        initConfig();
-        NetDock.initNet(this);
-        LogDock.initLog(this);
-        initStore();
+        application = this;
+        DaggerFrameWorkComponent.create().inject(this);
+        config.setDebug(true);
+        LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
         store = new Stack<>();
         registerActivityLifecycleCallbacks(new GodActivityLifecycleCallbacks(store));
-    }
-
-    private void initStore() {
-        StoreFactory.init(this);
-    }
-
-
-    private void initConfig() {
-        GodBaseConfig.getInsatance().setDebug(true);
     }
 
     /**
