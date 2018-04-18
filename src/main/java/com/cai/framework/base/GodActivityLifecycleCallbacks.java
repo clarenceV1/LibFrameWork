@@ -48,11 +48,14 @@ public class GodActivityLifecycleCallbacks implements Application.ActivityLifecy
     @Override
     public void onActivityPaused(Activity activity) {
         ++paused;
+
+        LogDock.getLog().debug("activityStack", "我在后台运行吗？" + isApplicationInForeground());
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
         ++stopped;
+        LogDock.getLog().debug("activityStack", "我在前台运行吗？" + isApplicationVisible());
     }
 
     @Override
