@@ -15,6 +15,7 @@ public class GodBaseConfig {
     private Map<String, Object> switchMap = null;
 
     private static final String IS_DEBUG = "debug";
+    private static final String IS_UNIT_TEST = "unitTest";
     private static final String BASE_URL = "base_url";
 
     @Inject
@@ -31,6 +32,17 @@ public class GodBaseConfig {
             return (boolean) switchMap.get(IS_DEBUG);
         }
         return false;
+    }
+
+    public boolean isUnitTest() {
+        if (switchMap.get(IS_UNIT_TEST) != null) {
+            return (boolean) switchMap.get(IS_UNIT_TEST);
+        }
+        return false;
+    }
+
+    public void setUnitTest(boolean isDebug) {
+        this.switchMap.put(IS_UNIT_TEST, isDebug);
     }
 
     public void setDebug(boolean isDebug) {

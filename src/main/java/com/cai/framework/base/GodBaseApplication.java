@@ -14,6 +14,8 @@ import com.squareup.leakcanary.RefWatcher;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+
 /**
  * Created by clarence on 2018/1/11.
  */
@@ -31,6 +33,7 @@ public class GodBaseApplication extends Application {
         application = this;
         DaggerFrameWorkComponent.create().inject(this);
         config.setDebug(true);
+        config.setUnitTest(true);
         LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
 
         registerLifecycle();
@@ -39,14 +42,24 @@ public class GodBaseApplication extends Application {
 
         initLeakCanary();
 
+        initRxBus();
+
+    }
+
+    private void initRxBus() {
+//        RxBus.setMainScheduler(AndroidSchedulers.mainThread());
     }
 
     private void initLeakCanary() {
-        refWatcher = setupLeakCanary();
+        if (!config.isUnitTest()) {
+            refWatcher = setupLeakCanary();
+        }
     }
 
     private void initStetho() {
-        Stetho.initializeWithDefaults(this);
+        if (!config.isUnitTest()) {
+            Stetho.initializeWithDefaults(this);
+        }
     }
 
     /**

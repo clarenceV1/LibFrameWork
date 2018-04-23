@@ -73,7 +73,7 @@ public class GodActivityLifecycleCallbacks implements Application.ActivityLifecy
         LogDock.getLog().debug("activityStack", ">>>>>>>>>>>>>>>");
         Observable.fromIterable(store).subscribe(new Consumer<Activity>() {
             @Override
-            public void accept(Activity activity) throws Exception {
+            public void accept(Activity activity) {
                 LogDock.getLog().debug("activityStack", "name: ", activityInfo(activity));
             }
         });
