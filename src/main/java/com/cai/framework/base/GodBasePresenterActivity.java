@@ -6,6 +6,7 @@ import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,17 +15,17 @@ import java.util.List;
 
 public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extends DataBindingActivity<M> implements LifecycleRegistryOwner {
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
-    public List<GodBasePresenter> observerList;
+    private List<GodBasePresenter> observerList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addLifecycleObserver();
+        initPresenter();
     }
 
-    private void addLifecycleObserver() {
-        observerList = getPresenters();
-        if (observerList != null) {
+    private void initPresenter() {
+        addPresenters(observerList);
+        if (observerList != null && observerList.size() > 0) {
             for (GodBasePresenter lifecycleObserver : observerList) {
                 lifecycleObserver.init(mRegistry, this);
                 lifecycleObserver.setContext(this);
@@ -33,7 +34,8 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
         }
     }
 
-    public abstract List<GodBasePresenter> getPresenters();
+
+    public abstract void addPresenters(List<GodBasePresenter> observerList);
 
     @Override
     public LifecycleRegistry getLifecycle() {
@@ -43,7 +45,11 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (observerList != null) {
+        destroyPresenter();
+    }
+
+    private void destroyPresenter() {
+        if (observerList != null && observerList.size() > 0) {
             for (GodBasePresenter godBasePresenter : observerList) {
                 godBasePresenter.onDetached();
             }
