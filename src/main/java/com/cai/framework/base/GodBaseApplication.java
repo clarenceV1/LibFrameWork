@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Build;
 
 import com.cai.framework.dagger.component.DaggerFrameWorkComponent;
+import com.example.clarence.utillibrary.ToastUtils;
 import com.example.clarence.utillibrary.log.Log1Build;
 import com.example.clarence.utillibrary.log.LogFactory;
 import com.facebook.stetho.Stetho;
@@ -44,6 +45,12 @@ public class GodBaseApplication extends Application {
 
         initRxBus();
 
+        initToast();
+
+    }
+
+    private void initToast() {
+        ToastUtils.initToast(application);
     }
 
     private void initRxBus() {
