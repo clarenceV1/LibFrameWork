@@ -43,6 +43,14 @@ dependencies {
     //For Room
 //    compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
 //    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha1"
+    compile rootProject.ext.dependencies["stetho"]
+    compile rootProject.ext.dependencies["stetho-js-rhino"]
+
+    debugCompile rootProject.ext.dependencies["leakcanary-android"]
+    releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
+
+    debugCompile rootProject.ext.dependencies["blockcanary-android"]
+    releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]
 
     compile project(':lib')
     compile project(':LibDataStore')

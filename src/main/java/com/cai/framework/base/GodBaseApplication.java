@@ -2,7 +2,9 @@ package com.cai.framework.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
+import android.os.StrictMode;
 
 import com.cai.framework.dagger.component.DaggerFrameWorkComponent;
 import com.cai.lib.logger.AndroidLogAdapter;
@@ -12,6 +14,10 @@ import com.cai.lib.logger.PrettyFormatStrategy;
 import com.example.clarence.utillibrary.ToastUtils;
 import com.example.clarence.utillibrary.log.Log1Build;
 import com.example.clarence.utillibrary.log.LogFactory;
+import com.facebook.stetho.Stetho;
+import com.github.moduth.blockcanary.BlockCanary;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import javax.inject.Inject;
 
@@ -25,6 +31,7 @@ public class GodBaseApplication extends Application {
     public GodBaseConfig config;
 
     GodActivityLifecycleCallbacks callbacks;
+    private RefWatcher refWatcher;
 
     public void onCreate() {
         super.onCreate();
@@ -41,6 +48,14 @@ public class GodBaseApplication extends Application {
         initToast();
 
         initLog();
+
+        initStetho();
+
+        initBlockCanary(config.isDebug());
+
+        initStrictMode(config.isDebug());
+
+        initLeakCanary();
     }
 
     private void initLog() {
@@ -116,5 +131,42 @@ public class GodBaseApplication extends Application {
             return callbacks.isApplicationInForeground();
         }
         return false;
+    }
+
+    private void initBlockCanary(boolean isTest) {
+        if (isTest) {
+            BlockCanary.install(GodBaseApplication.getAppContext(), new GodBlockCanaryContext()).start();
+        }
+    }
+
+    private void initStrictMode(boolean isTest) {
+        if (isTest && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
+        }
+    }
+
+    private void initStetho() {
+        if (!config.isUnitTest()) {
+            Stetho.initializeWithDefaults(this);
+        }
+    }
+
+    private void initLeakCanary() {
+        if (!config.isUnitTest()) {
+            refWatcher = setupLeakCanary();
+        }
+    }
+
+    private RefWatcher setupLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return RefWatcher.DISABLED;
+        }
+        return LeakCanary.install(this);
+    }
+
+    public static RefWatcher getRefWatcher(Context context) {
+        GodBaseApplication application = (GodBaseApplication) context.getApplicationContext();
+        return application.refWatcher;
     }
 }
