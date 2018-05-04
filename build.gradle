@@ -24,6 +24,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
     compile rootProject.ext.dependencies["appcompat-v7"]
 
     compile rootProject.ext.dependencies["aspectjrt"]
@@ -38,20 +39,15 @@ dependencies {
     compile rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
 
-    compile rootProject.ext.dependencies["stetho"]
-    compile rootProject.ext.dependencies["stetho-js-rhino"]
-
 //    implementation rootProject.ext.dependencies["rxbus"]
     //For Room
 //    compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
 //    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha1"
 
-    debugCompile rootProject.ext.dependencies["leakcanary-android"]
-    releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
-
     compile project(':lib')
     compile project(':LibDataStore')
     compile project(':LibUtils')
     compile project(':LibNet')
+    compile project(':LibLog')
     compile project(':LibImageLoader')
 }

@@ -2,20 +2,18 @@ package com.cai.framework.base;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.os.Build;
 
 import com.cai.framework.dagger.component.DaggerFrameWorkComponent;
+import com.cai.lib.logger.AndroidLogAdapter;
+import com.cai.lib.logger.FormatStrategy;
+import com.cai.lib.logger.Logger;
+import com.cai.lib.logger.PrettyFormatStrategy;
 import com.example.clarence.utillibrary.ToastUtils;
 import com.example.clarence.utillibrary.log.Log1Build;
 import com.example.clarence.utillibrary.log.LogFactory;
-import com.facebook.stetho.Stetho;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 import javax.inject.Inject;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by clarence on 2018/1/11.
@@ -26,7 +24,6 @@ public class GodBaseApplication extends Application {
     @Inject
     public GodBaseConfig config;
 
-    private RefWatcher refWatcher;
     GodActivityLifecycleCallbacks callbacks;
 
     public void onCreate() {
@@ -39,14 +36,28 @@ public class GodBaseApplication extends Application {
 
         registerLifecycle();
 
-        initStetho();
-
-        initLeakCanary();
-
         initRxBus();
 
         initToast();
 
+        initLog();
+    }
+
+    private void initLog() {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
+                .methodCount(0)         // (Optional) How many method line to show. Default 2
+                .methodOffset(7)        // (Optional) Hides internal method calls up to offset. Default 5
+//                .logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
+                .tag("MyLog")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .build();
+        AndroidLogAdapter androidLogAdapter = new AndroidLogAdapter(formatStrategy) {
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return true;
+            }
+        };
+        Logger.addLogAdapter(androidLogAdapter);
     }
 
     private void initToast() {
@@ -55,18 +66,6 @@ public class GodBaseApplication extends Application {
 
     private void initRxBus() {
 //        RxBus.setMainScheduler(AndroidSchedulers.mainThread());
-    }
-
-    private void initLeakCanary() {
-        if (!config.isUnitTest()) {
-            refWatcher = setupLeakCanary();
-        }
-    }
-
-    private void initStetho() {
-        if (!config.isUnitTest()) {
-            Stetho.initializeWithDefaults(this);
-        }
     }
 
     /**
@@ -78,20 +77,6 @@ public class GodBaseApplication extends Application {
             registerActivityLifecycleCallbacks(callbacks);
         }
     }
-
-    private RefWatcher setupLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return RefWatcher.DISABLED;
-        }
-        return LeakCanary.install(this);
-    }
-
-
-    public static RefWatcher getRefWatcher(Context context) {
-        GodBaseApplication application = (GodBaseApplication) context.getApplicationContext();
-        return application.refWatcher;
-    }
-
 
     public static GodBaseApplication getAppContext() {
         return application;
