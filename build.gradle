@@ -52,7 +52,7 @@ dependencies {
     debugCompile rootProject.ext.dependencies["blockcanary-android"]
     releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]
 
-    compile project(':lib')
+    compile project(':LibAnnotation')
     compile project(':LibDataStore')
     compile project(':LibUtils')
     compile project(':LibNet')
