@@ -52,6 +52,13 @@ dependencies {
     debugCompile rootProject.ext.dependencies["blockcanary-android"]
     releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]
 
+    compile rootProject.ext.dependencies["rxjava2"]
+    compile rootProject.ext.dependencies["rxandroid"]
+//    compile('com.jakewharton.rxrelay2:rxrelay:2.0.0'){
+//        exclude group: 'io.reactivex.rxjava2',module: 'rxjava'
+//    }
+//    compile rootProject.ext.dependencies["rxbus2"]
+
     compile project(':LibAnnotation')
     compile project(':LibDataStore')
     compile project(':LibUtils')

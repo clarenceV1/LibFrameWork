@@ -49,13 +49,13 @@ public class GodBaseApplication extends Application {
 
         initLog();
 
-        initStetho();
-
-        initBlockCanary(config.isDebug());
-
-        initStrictMode(config.isDebug());
-
-        initLeakCanary();
+//        initStetho();
+//
+//        initBlockCanary(config.isDebug());
+//
+//        initStrictMode(config.isDebug());
+//
+//        initLeakCanary();
     }
 
     private void initLog() {
