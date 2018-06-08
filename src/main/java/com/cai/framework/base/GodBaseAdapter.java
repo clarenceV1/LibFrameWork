@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public abstract class GodBaseAdapter<T extends CBaseData> extends BaseAdapter {
-    Context context;
+    public Context context;
     protected List<T> dataList;
     LayoutInflater inflater;
 

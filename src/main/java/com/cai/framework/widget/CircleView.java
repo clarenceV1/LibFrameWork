@@ -31,12 +31,7 @@ public class CircleView extends View {
         int height = getHeight();
         Paint paint1 = new Paint();
         paint1.setAntiAlias(true);
-        paint1.setColor(Color.RED);
+        paint1.setColor(color);
         canvas.drawCircle(width / 2, height / 2, width / 2, paint1);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
     }
 }
