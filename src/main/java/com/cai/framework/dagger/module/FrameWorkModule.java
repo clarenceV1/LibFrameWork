@@ -3,6 +3,7 @@ package com.cai.framework.dagger.module;
 import android.content.Context;
 
 import com.cai.framework.base.GodBaseApplication;
+import com.cai.framework.base.GodBaseConfig;
 import com.example.clarence.datastorelibrary.store.share_preference.ISharePreference;
 import com.example.clarence.datastorelibrary.store.share_preference.StoreForSharePreference;
 import com.example.clarence.imageloaderlibrary.ILoadImage;
@@ -31,7 +32,7 @@ public class FrameWorkModule {
 
     @Provides
     public INet provideRequest(Context context) {
-        return new NetForRetrofit.Builder().context(context).baseUrl("http://www.sojson.com").build();
+        return new NetForRetrofit.Builder().context(context).baseUrl(GodBaseConfig.getBaseUrl()).build();
     }
 
     @Provides

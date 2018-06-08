@@ -4,10 +4,13 @@ import android.view.View;
 import android.webkit.WebSettings;
 
 import com.cai.framework.R;
-import com.cai.framework.base.GodBaseFragment;
+import com.cai.framework.base.GodBasePresenter;
+import com.cai.framework.base.GodBasePresenterFragment;
 import com.cai.framework.databinding.WebVewFragmentBinding;
 
-public class WebViewFragment extends GodBaseFragment<WebVewFragmentBinding> {
+import java.util.List;
+
+public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBinding> {
 
     @Override
     public int getLayoutId() {
@@ -38,5 +41,15 @@ public class WebViewFragment extends GodBaseFragment<WebVewFragmentBinding> {
         WebSettings webSettings = mViewBinding.webViewLayout.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportZoom(true);
+    }
+
+    @Override
+    public void addPresenters(List<GodBasePresenter> observerList) {
+
+    }
+
+    @Override
+    public void initDagger() {
+
     }
 }

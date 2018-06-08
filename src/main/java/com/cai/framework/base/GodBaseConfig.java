@@ -1,5 +1,7 @@
 package com.cai.framework.base;
 
+import android.text.TextUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ public class GodBaseConfig {
     private static final String IS_DEBUG = "debug";
     private static final String IS_UNIT_TEST = "unitTest";
     private static final String BASE_URL = "base_url";
+    private static String baseUrl;//请求地址的域名，只能设置一次 天气预报域名==》"http://www.sojson.com"
 
     @Inject
     public GodBaseConfig() {
@@ -49,14 +52,13 @@ public class GodBaseConfig {
         this.switchMap.put(IS_DEBUG, isDebug);
     }
 
-    public String getBaseUrl() {
-        if (switchMap.get(BASE_URL) != null) {
-            return (String) switchMap.get(BASE_URL);
-        }
-        return null;
+    public static String getBaseUrl() {
+        return baseUrl;
     }
 
     public void setBaseUrl(String baseUrl) {
-        this.switchMap.put(BASE_URL, baseUrl);
+        if (TextUtils.isEmpty(this.baseUrl)) {
+            this.baseUrl = baseUrl;
+        }
     }
 }

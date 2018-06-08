@@ -19,6 +19,7 @@ public abstract class GodBasePresenterFragment<M extends ViewDataBinding> extend
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        initDagger();
         super.onCreate(savedInstanceState);
         initPresenter();
     }
@@ -37,14 +38,16 @@ public abstract class GodBasePresenterFragment<M extends ViewDataBinding> extend
 
     public abstract void addPresenters(List<GodBasePresenter> observerList);
 
+    public abstract void initDagger();
+
     @Override
     public LifecycleRegistry getLifecycle() {
         return mRegistry;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         destroyPresenter();
     }
 

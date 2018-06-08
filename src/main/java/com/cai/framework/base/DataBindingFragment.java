@@ -1,5 +1,6 @@
 package com.cai.framework.base;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.cai.framework.utils.PermissionUtils;
 
 public abstract class DataBindingFragment<M extends ViewDataBinding> extends Fragment {
     public M mViewBinding;
+    public Context mContext;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -28,6 +30,7 @@ public abstract class DataBindingFragment<M extends ViewDataBinding> extends Fra
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = getContext();
     }
 
     @Override
