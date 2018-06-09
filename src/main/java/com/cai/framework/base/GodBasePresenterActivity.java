@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 逻辑层
  * Created by clarence on 2018/1/11.
  */
-
 public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extends DataBindingActivity<M> implements LifecycleRegistryOwner {
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
     private List<GodBasePresenter> observerList = new ArrayList<>();
@@ -20,7 +20,9 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initDagger();
         initPresenter();
+        initView();
     }
 
     private void initPresenter() {
@@ -34,7 +36,7 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
         }
     }
 
-
+    public abstract void initDagger();
     public abstract void addPresenters(List<GodBasePresenter> observerList);
 
     @Override

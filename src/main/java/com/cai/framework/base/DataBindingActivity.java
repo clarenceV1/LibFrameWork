@@ -12,6 +12,10 @@ import android.view.View;
 import com.cai.framework.R;
 import com.cai.framework.utils.PermissionUtils;
 
+/**
+ *  视图层
+ * @param <M>
+ */
 public abstract class DataBindingActivity<M extends ViewDataBinding> extends FragmentActivity {
     public Context mContext;
     public M mViewBinding;
@@ -25,7 +29,6 @@ public abstract class DataBindingActivity<M extends ViewDataBinding> extends Fra
         super.onCreate(savedInstanceState);
         mContext = this;
         mViewBinding = DataBindingUtil.setContentView(this,getLayoutId());
-        initView();
     }
 
     @Override
@@ -34,7 +37,6 @@ public abstract class DataBindingActivity<M extends ViewDataBinding> extends Fra
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    public abstract int getLayoutId();
-
     public abstract void initView();
+    public abstract int getLayoutId();
 }
