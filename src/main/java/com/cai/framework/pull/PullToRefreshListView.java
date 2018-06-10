@@ -57,7 +57,6 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 	public PullToRefreshListView(Context context, Mode mode, AnimationStyle style) {
 		super(context, mode, style);
 	}
-
 	@Override
 	public final Orientation getPullToRefreshScrollDirection() {
 		return Orientation.VERTICAL;

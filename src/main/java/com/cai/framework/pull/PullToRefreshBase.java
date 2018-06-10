@@ -1406,6 +1406,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 			mIntValue = modeInt;
 		}
 
+		public static boolean isShowFooterLoadingView = true;
 		/**
 		 * @return true if the mode permits Pull-to-Refresh
 		 */
@@ -1424,7 +1425,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		 * @return true if this mode wants the Loading Layout Footer to be shown
 		 */
 		public boolean showFooterLoadingLayout() {
-			return this == PULL_FROM_END || this == BOTH || this == MANUAL_REFRESH_ONLY;
+			return isShowFooterLoadingView && (this == PULL_FROM_END || this == BOTH || this == MANUAL_REFRESH_ONLY);
 		}
 
 		int getIntValue() {
@@ -1432,7 +1433,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		}
 
 	}
-
 	// ===========================================================
 	// Inner, Anonymous Classes, and Enumerations
 	// ===========================================================
