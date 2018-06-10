@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_bar_background_marridge"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:background="@color/white_a">
+
+        <TextView
+            android:id="@+id/dialog_btnCancel"
+            android:layout_width="86dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/black_b"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dialog_btnOk"
+            android:layout_width="86dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/red_b"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/dialog_btnCancel"
+            android:layout_toLeftOf="@+id/dialog_btnOk"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:textColor="@color/black_a"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View
+        style="@style/divider"/>
+    <LinearLayout
+        android:id="@+id/ll_wheelview"
+        android:layout_width="fill_parent"
+        android:layout_height="208dip"
+        android:background="@color/white_a"
+        android:orientation="horizontal">
+
+        <com.cai.framework.widget.wheel.WheelView
+            android:id="@+id/pop_wv"
+            android:layout_width="fill_parent"
+            android:layout_height="200dip"
+            app:textValueColor="@color/black_a" />
+    </LinearLayout>
+
+</LinearLayout>
