@@ -55,6 +55,8 @@ dependencies {
     compile rootProject.ext.dependencies["rxjava2"]
     compile rootProject.ext.dependencies["rxandroid"]
 
+    compile rootProject.ext.dependencies["eventbus"]
+
     compile rootProject.ext.dependencies["android-support-percent"]
 
     compile project(':LibAnnotation')
