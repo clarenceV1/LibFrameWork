@@ -2,6 +2,7 @@ package com.cai.framework.utils;
 
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,5 +32,9 @@ public class ViewHolder {
 
     public static ImageView getImageView(View view, int id) {
         return (ImageView) ViewHolder.getView(view, id);
+    }
+
+    public static Button getButton(View view, int id) {
+        return (Button) ViewHolder.getView(view, id);
     }
 }
