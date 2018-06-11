@@ -1,12 +1,7 @@
 package com.cai.framework.base;
 
-import android.text.TextUtils;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * 底层配置文件
