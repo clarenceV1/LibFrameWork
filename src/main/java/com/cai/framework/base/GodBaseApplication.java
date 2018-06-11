@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import com.cai.framework.dagger.component.DaggerFrameWorkComponent;
+import com.cai.framework.widget.GodDialog;
 import com.cai.lib.logger.AndroidLogAdapter;
 import com.cai.lib.logger.FormatStrategy;
 import com.cai.lib.logger.Logger;
@@ -25,10 +26,10 @@ import javax.inject.Inject;
  * Created by clarence on 2018/1/11.
  */
 
-public class GodBaseApplication extends Application {
+public abstract class GodBaseApplication extends Application {
     private static GodBaseApplication application;
-    @Inject
-    public GodBaseConfig config;
+
+    GodBaseConfig config;
 
     GodActivityLifecycleCallbacks callbacks;
     private RefWatcher refWatcher;
@@ -36,9 +37,9 @@ public class GodBaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
+        initConfig();
+
         DaggerFrameWorkComponent.create().inject(this);
-        config.setDebug(true);
-        config.setUnitTest(true);
         LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
 
         registerLifecycle();
@@ -57,6 +58,16 @@ public class GodBaseApplication extends Application {
 //
 //        initLeakCanary();
     }
+
+    private void initConfig() {
+        config = GodBaseConfig.getInstance();
+        config.setDebug(isDebug());
+        config.setBaseUrl(getBaseUrl());
+    }
+
+    public abstract String getBaseUrl();
+
+    public abstract boolean isDebug();
 
     private void initLog() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()

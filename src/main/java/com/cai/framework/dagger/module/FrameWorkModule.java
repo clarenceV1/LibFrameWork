@@ -32,7 +32,7 @@ public class FrameWorkModule {
 
     @Provides
     public INet provideRequest(Context context) {
-        return new NetForRetrofit.Builder().context(context).baseUrl(GodBaseConfig.getBaseUrl()).build();
+        return new NetForRetrofit.Builder().context(context).baseUrl(GodBaseConfig.getInstance().getBaseUrl()).build();
     }
 
     @Provides

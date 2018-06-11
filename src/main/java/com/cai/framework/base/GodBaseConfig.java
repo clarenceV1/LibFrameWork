@@ -12,18 +12,23 @@ import javax.inject.Singleton;
  * 底层配置文件
  * Created by clarence on 2018/3/21.
  */
-@Singleton
 public class GodBaseConfig {
     private Map<String, Object> switchMap = null;
 
     private static final String IS_DEBUG = "debug";
     private static final String IS_UNIT_TEST = "unitTest";
-    private static final String BASE_URL = "base_url";
-    private static String baseUrl;//请求地址的域名，只能设置一次 天气预报域名==》"http://www.sojson.com"
+    private static final String BASE_URL = "base_url";//请求地址的域名，只能设置一次 天气预报域名==》"http://www.sojson.com"
 
-    @Inject
-    public GodBaseConfig() {
+    public static class LazyHolder {
+        public final static GodBaseConfig INSTANCE = new GodBaseConfig();
+    }
+
+    private GodBaseConfig() {
         switchMap = new HashMap<>();
+    }
+
+    public static GodBaseConfig getInstance() {
+        return LazyHolder.INSTANCE;
     }
 
     public void setSwitchMap(String key, Object value) {
@@ -52,13 +57,14 @@ public class GodBaseConfig {
         this.switchMap.put(IS_DEBUG, isDebug);
     }
 
-    public static String getBaseUrl() {
-        return baseUrl;
+    public String getBaseUrl() {
+        if (switchMap.get(BASE_URL) != null) {
+            return (String) switchMap.get(BASE_URL);
+        }
+        return null;
     }
 
     public void setBaseUrl(String baseUrl) {
-        if (TextUtils.isEmpty(this.baseUrl)) {
-            this.baseUrl = baseUrl;
-        }
+        this.switchMap.put(BASE_URL, baseUrl);
     }
 }
