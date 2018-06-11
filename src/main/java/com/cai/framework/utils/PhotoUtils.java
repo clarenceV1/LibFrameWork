@@ -3,16 +3,14 @@ package com.cai.framework.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
 import com.cai.annotation.aspect.Permission;
-import com.example.clarence.utillibrary.ImageUtils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 public class PhotoUtils {
@@ -22,6 +20,7 @@ public class PhotoUtils {
     private Uri imageUriFromCamera;
     private final int TAKE_PHOTO = 2;
     private final int CROP_IMAGE = 3;
+    private final int GET_IMAGE = 1;
     private boolean isCrop;//是否要裁剪；
 
     public static class LazyHolder {
@@ -37,6 +36,12 @@ public class PhotoUtils {
 
     public void setCrop(boolean crop) {
         isCrop = crop;
+    }
+
+    @Permission(value = Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    public void choosePhone(Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        activity.startActivityForResult(intent, GET_IMAGE);
     }
 
     @Permission(value = Manifest.permission.CAMERA)
@@ -64,8 +69,17 @@ public class PhotoUtils {
         }
     }
 
-    public Uri onActivityResult(int requestCode, int resultCode, Activity activity) {
-        if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
+    public Uri onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+        if (requestCode == GET_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumns = {MediaStore.Images.Media.DATA};
+            Cursor c = activity.getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+            c.moveToFirst();
+            int columnIndex = c.getColumnIndex(filePathColumns[0]);
+            String imagePath = c.getString(columnIndex);
+            c.close();
+            return Uri.fromFile(new File(imagePath));
+        } else if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
             if (isCrop) {
                 cropImage(activity, imageUriFromCamera, 1, 1, CROP_IMAGE);
             } else {
