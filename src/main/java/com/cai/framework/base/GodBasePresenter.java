@@ -31,4 +31,5 @@ public abstract class GodBasePresenter<V> extends BaseLifecycleObserver {
     public void onDetached() {
         mCompositeSubscription.dispose();
     }
+
 }
