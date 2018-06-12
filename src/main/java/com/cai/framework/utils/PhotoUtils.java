@@ -15,7 +15,7 @@ import java.io.File;
 
 public class PhotoUtils {
 
-    private final String USER_IMAGE_NAME = "image.png";
+    public static final String USER_IMAGE_NAME = "image.png";
     private final String USER_CROP_IMAGE_NAME = "temporary.png";
     private Uri imageUriFromCamera;
     private final int TAKE_PHOTO = 2;
@@ -69,7 +69,7 @@ public class PhotoUtils {
         }
     }
 
-    public Uri onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+    public String onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         if (requestCode == GET_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
             String[] filePathColumns = {MediaStore.Images.Media.DATA};
@@ -78,16 +78,17 @@ public class PhotoUtils {
             int columnIndex = c.getColumnIndex(filePathColumns[0]);
             String imagePath = c.getString(columnIndex);
             c.close();
-            return Uri.fromFile(new File(imagePath));
+            return imagePath;
         } else if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
             if (isCrop) {
                 cropImage(activity, imageUriFromCamera, 1, 1, CROP_IMAGE);
             } else {
-                return imageUriFromCamera;
+                File file = new File(activity.getExternalCacheDir(), USER_IMAGE_NAME);
+                return file.getPath();
             }
         } else if (requestCode == CROP_IMAGE && resultCode == Activity.RESULT_OK) {
             String imagePath = activity.getExternalCacheDir() + "/" + USER_CROP_IMAGE_NAME;
-            return Uri.fromFile(new File(imagePath));
+            return imagePath;
         }
         return null;
     }
