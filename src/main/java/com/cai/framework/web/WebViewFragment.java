@@ -12,6 +12,9 @@ import java.util.List;
 
 public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBinding> {
 
+    public static final String KEY_RUL = "URL";
+    private String url;
+
     @Override
     public int getLayoutId() {
         return R.layout.web_vew_fragment;
@@ -19,8 +22,13 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     @Override
     public void initView(View view) {
+        initData();
         initWebView(view);
         initProgressBar(view);
+    }
+
+    private void initData() {
+        url = getArguments().getString(KEY_RUL);
     }
 
     private void initProgressBar(View view) {
@@ -34,7 +42,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         WebViewClientBase mWebViewClientBase = new WebViewClientBase();
         mViewBinding.webViewLayout.setWebViewClient(mWebViewClientBase);
         mViewBinding.webViewLayout.setWebChromeClient(mWebChromeClientBase);
-        mViewBinding.webViewLayout.loadUrl("http://ybbview.seeyouyima.com/confinement/index");
+        mViewBinding.webViewLayout.loadUrl(url);
     }
 
     private void initWebSetting() {
