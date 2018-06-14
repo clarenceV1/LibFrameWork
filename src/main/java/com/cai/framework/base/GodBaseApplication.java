@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import com.cai.framework.dagger.component.DaggerFrameWorkComponent;
-import com.cai.framework.widget.GodDialog;
 import com.cai.lib.logger.AndroidLogAdapter;
 import com.cai.lib.logger.FormatStrategy;
 import com.cai.lib.logger.Logger;
@@ -19,8 +18,6 @@ import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
-
-import javax.inject.Inject;
 
 /**
  * Created by clarence on 2018/1/11.

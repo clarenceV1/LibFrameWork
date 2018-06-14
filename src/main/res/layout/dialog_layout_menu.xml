@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/dialog_btnOk"
+        android:layout_toRightOf="@+id/dialog_btnCancel"
+        android:background="@color/white_a"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textColor="@color/black_a"
+        android:textSize="16sp"
+        tools:text="我是标题" />
+
+    <View
+        android:id="@+id/divide"
+        style="@style/divider" />
+
+    <com.cai.framework.widget.ListViewEx
+        android:id="@+id/listViewEx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_height="240dp" />
+</LinearLayout>
