@@ -10,7 +10,6 @@ public abstract class GodBasePresenter<V> extends BaseLifecycleObserver {
     protected V mView;
     protected Context context;
     protected CompositeDisposable mCompositeSubscription = new CompositeDisposable();
-
     /**
      * 初始化必须调用
      *
@@ -31,5 +30,4 @@ public abstract class GodBasePresenter<V> extends BaseLifecycleObserver {
     public void onDetached() {
         mCompositeSubscription.dispose();
     }
-
 }

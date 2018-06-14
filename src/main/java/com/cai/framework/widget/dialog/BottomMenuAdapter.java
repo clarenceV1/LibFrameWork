@@ -1,6 +1,5 @@
 package com.cai.framework.widget.dialog;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 

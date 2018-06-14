@@ -3,6 +3,7 @@ package com.cai.framework.utils;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,5 +37,8 @@ public class ViewHolder {
 
     public static Button getButton(View view, int id) {
         return (Button) ViewHolder.getView(view, id);
+    }
+    public static CheckBox getCheckBox(View view, int id) {
+        return (CheckBox) ViewHolder.getView(view, id);
     }
 }
