@@ -1,9 +1,4 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
-package com.cai.framework.widget.wheel;
+package com.cai.framework.widget.dialog;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

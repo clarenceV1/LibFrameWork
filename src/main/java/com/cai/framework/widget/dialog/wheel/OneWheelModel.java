@@ -1,4 +1,4 @@
-package com.cai.framework.widget.wheel;
+package com.cai.framework.widget.dialog.wheel;
 
 /**
  * oneWheeldialog配置类

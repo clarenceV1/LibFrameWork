@@ -1,4 +1,4 @@
-package com.cai.framework.widget.wheel;
+package com.cai.framework.widget.dialog.wheel;
 
 /**
  * Created by caishuxing on 2015/11/25.

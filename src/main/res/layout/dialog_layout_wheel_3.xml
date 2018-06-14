@@ -84,7 +84,7 @@
                 app:layout_widthPercent="33%"
                 app:textValueColor="@color/black_a" />
 
-            <com.cai.framework.widget.wheel.WheelView
+            <com.cai.framework.widget.dialog.wheel.WheelView
                 android:id="@+id/pop_wv_center"
                 android:layout_width="0dp"
                 android:layout_height="200dip"
@@ -93,7 +93,7 @@
                 app:layout_widthPercent="33%"
                 app:textValueColor="@color/black_a" />
 
-            <com.cai.framework.widget.wheel.WheelView
+            <com.cai.framework.widget.dialog.wheel.WheelView
                 android:id="@+id/pop_wv_right"
                 android:layout_width="0dp"
                 android:layout_height="200dip"

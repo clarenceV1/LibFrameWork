@@ -1,4 +1,4 @@
-package com.cai.framework.widget.wheel;
+package com.cai.framework.widget.dialog.wheel;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -6,6 +6,8 @@ import android.support.percent.PercentRelativeLayout;
 import android.view.View;
 import android.widget.TextView;
 import com.cai.framework.R;
+import com.cai.framework.widget.dialog.BaseBottomDialog;
+
 /**
  * 3个wheelview
  */

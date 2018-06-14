@@ -1,4 +1,4 @@
-package com.cai.framework.widget.wheel;
+package com.cai.framework.widget.dialog.wheel;
 
 import android.content.Context;
 import android.content.res.TypedArray;

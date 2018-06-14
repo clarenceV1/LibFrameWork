@@ -1,4 +1,4 @@
-package com.cai.framework.widget.wheel;
+package com.cai.framework.widget.dialog.wheel;
 
 import android.app.Activity;
 import android.util.TypedValue;
@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.cai.framework.R;
+import com.cai.framework.widget.dialog.BaseBottomDialog;
+
 /**
  * 单个wheel
  */

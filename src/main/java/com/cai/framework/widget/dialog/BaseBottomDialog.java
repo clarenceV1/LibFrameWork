@@ -1,4 +1,4 @@
-package com.cai.framework.widget.wheel;
+package com.cai.framework.widget.dialog;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.cai.framework.R;
 
 import static android.widget.LinearLayout.VERTICAL;
@@ -20,7 +20,7 @@ import static android.widget.LinearLayout.VERTICAL;
 /**
  * 底部对话框 基类
  */
-public abstract class BaseBottomDialog extends LinganDialog {
+public abstract class BaseBottomDialog extends BaseDialog {
 	protected Context mContext;
 	/**
 	 * 获取对话框布局
@@ -99,7 +99,7 @@ public abstract class BaseBottomDialog extends LinganDialog {
 			mContentHeight = layoutView.getMeasuredHeight();
 			mSpaceHeight = (int)(mContentHeight*0.15);
 			mAllHeight = mContentHeight+mSpaceHeight;
-			LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mSpaceHeight);
+//			LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mSpaceHeight);
 			//params1.bottomMargin = -whiteHeight;
 //			mLinearLayout.addView(mTextView,params1);
 

@@ -56,7 +56,7 @@
         android:background="@color/white_a"
         android:orientation="horizontal">
 
-        <com.cai.framework.widget.wheel.WheelView
+        <com.cai.framework.widget.dialog.wheel.WheelView
             android:id="@+id/pop_wv"
             android:layout_width="fill_parent"
             android:layout_height="200dip"
