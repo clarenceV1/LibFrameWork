@@ -11,6 +11,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="@color/white_a"
         android:gravity="center"
         android:textSize="20sp"
         tools:text="我是菜单" />
