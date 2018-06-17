@@ -59,6 +59,8 @@ dependencies {
 
     compile rootProject.ext.dependencies["android-support-percent"]
 
+    compile rootProject.ext.dependencies["QR-code"]
+
     compile project(':LibAnnotation')
     compile project(':LibDataStore')
     compile project(':LibUtils')
