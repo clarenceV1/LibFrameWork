@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.cai.framework.R;
 import com.cai.framework.bean.CBaseData;
+import com.cai.framework.utils.ViewHolder;
 
 import java.util.List;
 
@@ -50,6 +52,7 @@ public abstract class GodBaseAdapter<T extends CBaseData> extends BaseAdapter {
             convertView = inflater.inflate(getItemLayout(), parent, false);
         }
         initItemView(convertView,dataList.get(position),position);
+//        ViewHolder.getTextView(convertView, R.id.itemName).setText(scrollData.getName());
         return convertView;
     }
 }
