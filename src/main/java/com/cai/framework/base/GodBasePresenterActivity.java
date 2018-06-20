@@ -3,8 +3,12 @@ package com.cai.framework.base;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
+import android.content.pm.ActivityInfo;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.view.View;
+
+import com.cai.framework.utils.stausbar.StatusBarController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,9 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarController.getInstance().setStatusTextColor(this, true);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initDagger();
         initPresenter();
         initView();
