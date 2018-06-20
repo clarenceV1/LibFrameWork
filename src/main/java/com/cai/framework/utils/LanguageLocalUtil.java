@@ -9,10 +9,6 @@ import android.util.DisplayMetrics;
 import com.cai.framework.bean.LanguageModel;
 import com.example.clarence.utillibrary.StringUtils;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,24 +36,24 @@ public class LanguageLocalUtil {
         }
     }
 
-    public static List<LanguageModel> getAllLanguage() {
+    public static List<LanguageModel> getAllLanguage(Context context) {
         if (languageModels == null) {
-            languageModels = new ArrayList<>();
-            String json = AssetUtil.getStringFromAsset(getContext(), "language.json");
-            try {
-                JSONArray jsonArray = new JSONArray(json);
-                int size = jsonArray.length();
-                for (int i = 0; i < size; i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    LanguageModel model = new LanguageModel();
-                    model.setName(jsonObject.optString("name"));
-                    model.setLocal(jsonObject.optString("local"));
-                    //
-                    languageModels.add(model);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            languageModels = new ArrayList<>();
+//            String json = AssetUtil.getStringFromAsset(getContext(), "language.json");
+//            try {
+//                JSONArray jsonArray = new JSONArray(json);
+//                int size = jsonArray.length();
+//                for (int i = 0; i < size; i++) {
+//                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+//                    LanguageModel model = new LanguageModel();
+//                    model.setName(jsonObject.optString("name"));
+//                    model.setLocal(jsonObject.optString("local"));
+//                    //
+//                    languageModels.add(model);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
 
         }
         return languageModels;
