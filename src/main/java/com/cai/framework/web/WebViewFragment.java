@@ -121,59 +121,6 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         }
     }
 
-    /**
-     * 处理javascript调用客户端
-     *
-     * @param uri
-     * @return
-     */
-    public boolean handlerJavascript(Uri uri) {
-        // 如果url的协议 = 预先约定的 js 协议
-        // 就解析往下解析参数
-        if (uri.getScheme().equals("js")) {
-            // 如果 authority  = 预先约定协议里的 webview，即代表都符合约定的协议
-            // 所以拦截url,下面JS开始调用Android需要的方法
-            if (uri.getAuthority().equals("webview")) {
-                //  步骤3：
-                // 执行JS所需要调用的逻辑
-                System.out.println("js调用了Android的方法");
-                // 可以在协议上带有参数并传递到Android上
-                HashMap<String, String> params = new HashMap<>();
-                Set<String> collection = uri.getQueryParameterNames();
-
-                //只能通过一下方法返回结果给服务端
-                String result = "这是处理后的结果";
-                loadJavascript("returnResult", result);
-                mWebView.loadUrl("javascript:returnResult(" + result + ")");//returnResult协商返回给javascript的方法
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 安卓调用javascript方法
-     *
-     * @param methdName javascript的方法名
-     * @param param     返回给javascript 的值
-     */
-    public void loadJavascript(String methdName, String param) {
-        // Android版本变量
-        // 因为该方法在 Android 4.4 版本才可使用，所以使用时需进行版本判断
-        String jsUrl = StringUtils.buildString("javascript:", methdName, "(", TextUtils.isEmpty(param) ? "" : param, ")");
-        if (Build.VERSION.SDK_INT < 19) {
-            mWebView.loadUrl(jsUrl);//xxxxxjavascript方法名
-        } else {
-            mWebView.evaluateJavascript(jsUrl, new ValueCallback<String>() {//xxxxxjavascript方法名
-                @Override
-                public void onReceiveValue(String value) { //javascript 返回的结果
-                    //此处为 js 返回的结果
-                    Log.d("WebViewFragment", "javascript 返回的结果" + value);
-                }
-            });
-        }
-    }
-
     @Override
     public void onResume() {
         super.onResume();

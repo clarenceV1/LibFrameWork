@@ -27,7 +27,7 @@ public class WebViewClientBase extends WebViewClient {
         if (uri.getScheme().equals("http") || uri.getScheme().equals("https")) {
             view.loadUrl(url);
             return true;
-        } else if (webViewFragment.handlerJavascript(uri)) {
+        } else if (WebProtocolManager.getInstall().isProtocol(webViewFragment.mWebView,uri)) {
             return true;
         }
         return super.shouldOverrideUrlLoading(view, url);
