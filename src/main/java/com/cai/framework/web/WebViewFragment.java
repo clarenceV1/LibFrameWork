@@ -2,6 +2,7 @@ package com.cai.framework.web;
 
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -54,7 +55,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     private void initWebView() {
         //创建Webview
-        int screenHeight = DeviceUtils.getScreenHeight(getContext()) - DimensUtils.dip2px(getContext(),50);
+        int screenHeight = DeviceUtils.getScreenHeight(getContext()) - DimensUtils.dip2px(getContext(), 50);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mWebView = new WebView(GodBaseApplication.getAppContext());
         mWebView.setLayoutParams(params);
@@ -154,12 +155,12 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
      * 安卓调用javascript方法
      *
      * @param methdName javascript的方法名
-     * @param result    返回给javascript 的值
+     * @param param     返回给javascript 的值
      */
-    public void loadJavascript(String methdName, String result) {
+    public void loadJavascript(String methdName, String param) {
         // Android版本变量
         // 因为该方法在 Android 4.4 版本才可使用，所以使用时需进行版本判断
-        String jsUrl = StringUtils.buildString("javascript:", methdName, "(", result, ")");
+        String jsUrl = StringUtils.buildString("javascript:", methdName, "(", TextUtils.isEmpty(param) ? "" : param, ")");
         if (Build.VERSION.SDK_INT < 19) {
             mWebView.loadUrl(jsUrl);//xxxxxjavascript方法名
         } else {
@@ -229,5 +230,11 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
             mWebView = null;
         }
         super.onDestroyView();
+    }
+
+    public void loadUrl(String url) {
+        if (mWebView != null) {
+            mWebView.loadUrl(url);
+        }
     }
 }
