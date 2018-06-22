@@ -68,11 +68,6 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         mWebView.setWebViewClient(mWebViewClientBase);
         mWebView.setWebChromeClient(mWebChromeClientBase);
 
-        // 通过addJavascriptInterface()将Java对象映射到JS对象
-        //参数1：Javascript对象名
-        //参数2：Java对象名
-        mWebView.addJavascriptInterface(new AndroidtoJs(), "test");//AndroidtoJS类对象映射到js的test对象
-
         mWebView.loadUrl(url);
     }
 
