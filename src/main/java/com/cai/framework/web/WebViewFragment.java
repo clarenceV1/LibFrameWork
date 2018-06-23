@@ -55,7 +55,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     private void initWebView() {
         //创建Webview
-        int screenHeight = DeviceUtils.getScreenHeight(getContext()) - DimensUtils.dip2px(getContext(), 50);
+//        int screenHeight = DeviceUtils.getScreenHeight(getContext()) - DimensUtils.dip2px(getContext(), 50);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mWebView = new WebView(GodBaseApplication.getAppContext());
         mWebView.setLayoutParams(params);
