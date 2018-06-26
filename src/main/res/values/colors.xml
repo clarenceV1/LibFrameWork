@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--baselayout的颜色样式-->
+    <color name="title_color">#8D48FF</color>
+</resources>

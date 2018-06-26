@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.cai.framework.R;
+import com.example.clarence.utillibrary.DeviceUtils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
@@ -24,25 +25,28 @@ import java.util.List;
 public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extends DataBindingActivity<M> implements LifecycleRegistryOwner {
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
     private List<GodBasePresenter> observerList = new ArrayList<>();
-    public SystemBarTintManager tintManager;
+    private SystemBarTintManager tintManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-            tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(true);
-            tintManager.setTintColor(getResources().getColor(R.color.black_a));
-        }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if(!DeviceUtils.isFullScreen(this)){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                setTranslucentStatus(true);
+                tintManager = new SystemBarTintManager(this);
+                tintManager.setStatusBarTintEnabled(true);
+                tintManager.setTintColor(getResources().getColor(R.color.black_a));
+                setStatusBar(tintManager);
+            }
+        }
         initDagger();
         initPresenter();
         initView();
     }
 
     @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
+    public void setTranslucentStatus(boolean on) {
         Window win = getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
         final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
@@ -64,7 +68,7 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
             }
         }
     }
-
+    public abstract void setStatusBar(SystemBarTintManager tintManager);
     public abstract void initDagger();
     public abstract void addPresenters(List<GodBasePresenter> observerList);
 
