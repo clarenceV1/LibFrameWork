@@ -1,13 +1,8 @@
 package com.cai.framework.web;
 
-import android.net.Uri;
 import android.os.Build;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -17,18 +12,12 @@ import com.cai.framework.base.GodBaseApplication;
 import com.cai.framework.base.GodBasePresenter;
 import com.cai.framework.base.GodBasePresenterFragment;
 import com.cai.framework.databinding.WebVewFragmentBinding;
-import com.example.clarence.utillibrary.DeviceUtils;
-import com.example.clarence.utillibrary.DimensUtils;
-import com.example.clarence.utillibrary.StringUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBinding> {
 
     public static final String KEY_RUL = "URL";
-    private static final String APP_CACAHE_DIRNAME = "web_cache";
     private String url;
     WebView mWebView;
     WebSettings webSettings;
@@ -55,7 +44,6 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     private void initWebView() {
         //创建Webview
-//        int screenHeight = DeviceUtils.getScreenHeight(getContext()) - DimensUtils.dip2px(getContext(), 50);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mWebView = new WebView(GodBaseApplication.getAppContext());
         mWebView.setLayoutParams(params);

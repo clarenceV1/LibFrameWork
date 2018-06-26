@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -35,6 +36,8 @@ public class VerticalScrollTextView extends RelativeLayout {
         super(context, attrs);
         mHandler = new AnimateHandler(this);
         mTextView = new TextView(context, attrs);
+        mTextView.setSingleLine();
+        mTextView.setEllipsize(TextUtils.TruncateAt.END);
         mTextView.setBackgroundDrawable(null);
         mTextView.setTextColor(mTextView.getTextColors());
     }

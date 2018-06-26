@@ -39,6 +39,8 @@ public abstract class GodBaseApplication extends Application {
         DaggerFrameWorkComponent.create().inject(this);
         LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
 
+        initWebProtocol();
+
         registerLifecycle();
 
         initRxBus();
@@ -61,6 +63,8 @@ public abstract class GodBaseApplication extends Application {
         config.setDebug(isDebug());
         config.setBaseUrl(getBaseUrl());
     }
+
+    public abstract void initWebProtocol();
 
     public abstract String getBaseUrl();
 

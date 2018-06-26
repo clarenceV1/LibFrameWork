@@ -8,6 +8,9 @@ import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import com.alibaba.fastjson.JSONObject;
 import com.example.clarence.utillibrary.Base64Utils;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 public class WebProtocolManager {
@@ -41,12 +44,30 @@ public class WebProtocolManager {
         if (PROTOCOL_SCHEME.equals(uri.getScheme())) {
             if (iProtocol != null) {
                 String host = uri.getHost();
+                if(TextUtils.isEmpty(host)){
+                    return false;
+                }
                 String params = uri.getQueryParameter(PROTOCOL_PARAM);
                 if (!TextUtils.isEmpty(params)) {
-                    params = Base64Utils.decodeToString(params);
+                    try {
+                        params = Base64Utils.decodeToString(params);
+                        params = URLDecoder.decode(params,"utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                 }
-                Map<String, String> result = iProtocol.handlerProtocol(host, params);
-                handlerProtocolResult(webView, uri.toString(), result);
+                IWebProtocolCallback callback = new IWebProtocolCallback() {
+                    @Override
+                    public void callBack(WebProtocolDO protocolDO,Map<String, String> result) {
+                        handlerProtocolResult(protocolDO, result);
+                    }
+                };
+                WebProtocolDO protocolDO = new WebProtocolDO();
+                protocolDO.setHost(host);
+                protocolDO.setParams(params);
+                protocolDO.setWebView(webView);
+                protocolDO.setUri(uri);
+                iProtocol.handlerProtocol(protocolDO,callback);
             }
             return true;
         }
@@ -56,17 +77,15 @@ public class WebProtocolManager {
     /**
      * 拼接返回的参数
      *
-     * @param webView
-     * @param url
      * @param param
      */
-    private void handlerProtocolResult(WebView webView, String url, Map param) {
+    private void handlerProtocolResult(WebProtocolDO protocolDO, Map<String, String> param) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("url", url);
+        jsonObject.put("url", protocolDO.getUri().toString());
         if (param != null) {
-            jsonObject.put("param", param);
+            jsonObject.putAll(param);
         }
-        javascriptCallBack(webView, "jsCallBack", jsonObject.toJSONString());
+        javascriptCallBack(protocolDO.getWebView(), "jsCallBack", jsonObject.toJSONString());
     }
 
 
