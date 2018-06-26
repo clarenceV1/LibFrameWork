@@ -1,4 +1,4 @@
-package com.cai.framework.bean;
+package com.cai.framework.baseview;
 
 import android.view.View;
 
