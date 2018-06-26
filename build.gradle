@@ -61,6 +61,8 @@ dependencies {
     compile rootProject.ext.dependencies["fastjson"]
     compile rootProject.ext.dependencies["QR-code"]
 
+    compile rootProject.ext.dependencies["systembartint"]
+
     compile project(':LibAnnotation')
     compile project(':LibDataStore')
     compile project(':LibUtils')
