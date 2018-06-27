@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
-import com.cai.framework.dagger.component.DaggerFrameWorkComponent;
 import com.cai.lib.logger.AndroidLogAdapter;
 import com.cai.lib.logger.FormatStrategy;
 import com.cai.lib.logger.Logger;
@@ -36,12 +35,12 @@ public abstract class GodBaseApplication extends Application {
         application = this;
         initConfig();
 
-        DaggerFrameWorkComponent.create().inject(this);
         LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
 
         initWebProtocol();
 
         registerLifecycle();
+
 
         initRxBus();
 

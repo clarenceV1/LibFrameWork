@@ -1,18 +1,25 @@
 package com.cai.framework.dagger.component;
 
+import android.content.Context;
+
 import com.cai.framework.base.GodBaseApplication;
-import com.cai.framework.dagger.module.FrameWorkModule;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
+import com.example.clarence.datastorelibrary.store.share_preference.ISharePreference;
+import com.example.clarence.imageloaderlibrary.ILoadImage;
+import com.example.clarence.netlibrary.INet;
 
 /**
  * Created by clarence on 2018/3/26.
  */
-@Singleton
-@Component(modules = FrameWorkModule.class)
+
 public interface FrameWorkComponent {
 
     void inject(GodBaseApplication application);
+
+    Context provideContext();
+
+    ILoadImage provideLoadImage();
+
+    INet provideHttp();
+
+    ISharePreference provideSharePreference();
 }

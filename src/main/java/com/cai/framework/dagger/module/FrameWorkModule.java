@@ -11,6 +11,8 @@ import com.example.clarence.imageloaderlibrary.ImageForGlide;
 import com.example.clarence.netlibrary.INet;
 import com.example.clarence.netlibrary.NetForRetrofit;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -21,21 +23,25 @@ import dagger.Provides;
 public class FrameWorkModule {
 
     @Provides
-    Context provideContext() {
+    @Singleton
+    public Context provideContext() {
         return GodBaseApplication.getAppContext();
     }
 
     @Provides
+    @Singleton
     public ILoadImage provideImageLoader() {
         return new ImageForGlide.ImageForGlideBuild().build();
     }
 
     @Provides
+    @Singleton
     public INet provideRequest(Context context) {
         return new NetForRetrofit.Builder().context(context).baseUrl(GodBaseConfig.getInstance().getBaseUrl()).build();
     }
 
     @Provides
+    @Singleton
     public ISharePreference provideSharePreference(Context context) {
         return new StoreForSharePreference.Builder().context(context).spName("spSave").build();
     }
