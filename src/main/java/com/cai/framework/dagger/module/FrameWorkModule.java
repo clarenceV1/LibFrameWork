@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit2.Retrofit;
 
 /**
  * Created by clarence on 2018/3/26.
@@ -36,7 +37,7 @@ public class FrameWorkModule {
 
     @Provides
     @Singleton
-    public INet provideRequest(Context context) {
+    public INet provideRequestNet(Context context) {
         return new NetForRetrofit.Builder().context(context).baseUrl(GodBaseConfig.getInstance().getBaseUrl()).build();
     }
 
@@ -44,5 +45,11 @@ public class FrameWorkModule {
     @Singleton
     public ISharePreference provideSharePreference(Context context) {
         return new StoreForSharePreference.Builder().context(context).spName("spSave").build();
+    }
+
+    @Provides
+    @Singleton
+    public Retrofit provideRequestRetrofit(INet iNet) {
+        return iNet.request();
     }
 }

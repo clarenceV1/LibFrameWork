@@ -7,6 +7,8 @@ import com.example.clarence.datastorelibrary.store.share_preference.ISharePrefer
 import com.example.clarence.imageloaderlibrary.ILoadImage;
 import com.example.clarence.netlibrary.INet;
 
+import retrofit2.Retrofit;
+
 /**
  * Created by clarence on 2018/3/26.
  */
@@ -19,7 +21,9 @@ public interface FrameWorkComponent {
 
     ILoadImage provideLoadImage();
 
-    INet provideHttp();
+    INet provideRequestNet();
 
     ISharePreference provideSharePreference();
+
+    Retrofit provideRequestRetrofit();
 }
