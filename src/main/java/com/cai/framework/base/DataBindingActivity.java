@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.view.View;
 
-import com.cai.framework.R;
 import com.cai.framework.utils.PermissionUtils;
 
 /**
- *  视图层
+ * 视图层
+ *
  * @param <M>
  */
 public abstract class DataBindingActivity<M extends ViewDataBinding> extends FragmentActivity {
@@ -28,7 +27,7 @@ public abstract class DataBindingActivity<M extends ViewDataBinding> extends Fra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        mViewBinding = DataBindingUtil.setContentView(this,getLayoutId());
+        mViewBinding = DataBindingUtil.setContentView(this, getLayoutId());
     }
 
     @Override
@@ -38,5 +37,6 @@ public abstract class DataBindingActivity<M extends ViewDataBinding> extends Fra
     }
 
     public abstract void initView();
+
     public abstract int getLayoutId();
 }

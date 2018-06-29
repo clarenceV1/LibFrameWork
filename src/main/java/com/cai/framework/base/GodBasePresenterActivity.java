@@ -9,6 +9,7 @@ import android.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -32,19 +33,34 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        initStateBar();
+        initDagger();
+        initPresenter();
+        initView();
+    }
+
+    private void initStateBar() {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        if(!DeviceUtils.isFullScreen(this)){
+        if (!DeviceUtils.isFullScreen(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 setTranslucentStatus(true);
                 tintManager = new SystemBarTintManager(this);
                 tintManager.setStatusBarTintEnabled(true);
                 tintManager.setTintColor(getResources().getColor(R.color.black_a));
                 setStatusBar(tintManager);
+                try {
+                    View rootView = findViewById(android.R.id.content);
+                    if (rootView != null) {
+                        ViewGroup viewGroup = (ViewGroup) rootView;
+                        if (viewGroup.getChildCount() > 0) {
+                            viewGroup.getChildAt(0).setFitsSystemWindows(true);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
-        initDagger();
-        initPresenter();
-        initView();
     }
 
     @TargetApi(19)
@@ -70,8 +86,11 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
             }
         }
     }
+
     public abstract void setStatusBar(SystemBarTintManager tintManager);
+
     public abstract void initDagger();
+
     public abstract void addPresenters(List<GodBasePresenter> observerList);
 
     @Override
