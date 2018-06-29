@@ -2,4 +2,8 @@
 <resources>
     <!--baselayout的颜色样式-->
     <color name="title_color">#8D48FF</color>
+    <color name="white">#ffffff</color>
+    <color name="black_292929">#292929</color>
+    <color name="item_line_color">#C8C8C8</color>
+    <color name="gray_f6f6f6">#F6F6F6</color>
 </resources>
