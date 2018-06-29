@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.cai.framework.R;
 import com.example.clarence.utillibrary.DeviceUtils;
 
-public class GodDialog extends Dialog {
+public class GodDialog extends Dialog implements View.OnClickListener {
 
     TextView positiveButton;
     TextView negativeButton;
@@ -22,7 +22,7 @@ public class GodDialog extends Dialog {
     private DialogInterface.OnClickListener negativeButtonClickListener;
 
     private GodDialog(Builder builder) {
-        super(builder.context,R.style.Dialog);
+        super(builder.context, R.style.Dialog);
         this.oneButton = builder.oneButton;
         this.positiveButton = builder.positiveButton;
         this.negativeButton = builder.negativeButton;
@@ -34,42 +34,28 @@ public class GodDialog extends Dialog {
     }
 
     private void setClickListener() {
-        if (positiveButtonClickListener != null && positiveButton != null) {
-            positiveButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    positiveButtonClickListener.onClick(GodDialog.this, DialogInterface.BUTTON_POSITIVE);
-                    GodDialog.this.dismiss();
-                }
-            });
-        }
-
-        if (negativeButtonClickListener != null && negativeButton != null) {
-            negativeButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    negativeButtonClickListener.onClick(GodDialog.this, DialogInterface.BUTTON_NEGATIVE);
-                    GodDialog.this.dismiss();
-                }
-            });
-        }
-        if (positiveButtonClickListener != null && oneButton != null) {
-            oneButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    positiveButtonClickListener.onClick(GodDialog.this, DialogInterface.BUTTON_POSITIVE);
-                    GodDialog.this.dismiss();
-                }
-            });
-        }
+        positiveButton.setOnClickListener(this);
+        negativeButton.setOnClickListener(this);
+        oneButton.setOnClickListener(this);
     }
 
     @Override
-    public void show() {
-        super.show();
-//        WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-//        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-//        //如果需要状态栏透明，就使用下面的方法
-//        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        getWindow().getDecorView().setPadding(0, 0, 0, 0);
-//        getWindow().setAttributes(layoutParams);
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.btn_dialog_ok) {
+            if (positiveButtonClickListener != null) {
+                positiveButtonClickListener.onClick(GodDialog.this, DialogInterface.BUTTON_POSITIVE);
+            }
+        } else if (id == R.id.btn_dialog_cancel) {
+            if (negativeButtonClickListener != null) {
+                negativeButtonClickListener.onClick(GodDialog.this, DialogInterface.BUTTON_NEGATIVE);
+            }
+        } else if (id == R.id.btn_dialog_one) {
+            if (positiveButtonClickListener != null) {
+                positiveButtonClickListener.onClick(GodDialog.this, DialogInterface.BUTTON_POSITIVE);
+            }
+        }
+        dismiss();
     }
 
     public static class Builder {
