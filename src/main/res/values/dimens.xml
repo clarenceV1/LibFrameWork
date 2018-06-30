@@ -7,4 +7,5 @@
     <dimen name="header_footer_left_right_padding">24dp</dimen>
     <dimen name="header_footer_top_bottom_padding">12dp</dimen>
 
+    <dimen name="bottom_chart_height">100dp</dimen>
 </resources>
