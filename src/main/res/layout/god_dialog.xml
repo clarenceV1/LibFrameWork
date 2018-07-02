@@ -46,6 +46,7 @@
             android:background="@color/item_line_color" />
 
         <LinearLayout
+            android:id="@+id/rlTwoBtn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">

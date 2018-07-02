@@ -209,14 +209,15 @@ public class GodDialog extends Dialog implements View.OnClickListener {
             }
 
             oneButton = layout.findViewById(R.id.btn_dialog_one);
+            LinearLayout rlTwoBtn = layout.findViewById(R.id.rlTwoBtn);
             if (showOneButton) {
                 if (TextUtils.isEmpty(positiveButtonText)) {
                     oneButton.setVisibility(View.GONE);
+                    rlTwoBtn.setVisibility(View.VISIBLE);
                 } else {
                     oneButton.setText(positiveButtonText);
                     oneButton.setVisibility(View.VISIBLE);
-                    negativeButton.setVisibility(View.GONE);
-                    positiveButton.setVisibility(View.GONE);
+                    rlTwoBtn.setVisibility(View.GONE);
                 }
             }
 
