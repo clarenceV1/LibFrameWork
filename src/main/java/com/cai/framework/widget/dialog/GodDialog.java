@@ -21,7 +21,7 @@ public class GodDialog extends Dialog implements View.OnClickListener {
     private DialogInterface.OnClickListener positiveButtonClickListener;
     private DialogInterface.OnClickListener negativeButtonClickListener;
 
-    private GodDialog(Builder builder) {
+    protected GodDialog(Builder builder) {
         super(builder.context, R.style.Dialog);
         this.oneButton = builder.oneButton;
         this.positiveButton = builder.positiveButton;

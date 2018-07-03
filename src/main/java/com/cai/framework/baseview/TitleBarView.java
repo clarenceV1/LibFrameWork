@@ -1,7 +1,6 @@
 package com.cai.framework.baseview;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,16 @@ public class TitleBarView extends RelativeLayout {
     private TextView tvTitle;
     private TextView tvRight;
 
+    public TitleBarView(Context context) {
+        super(context);
+        init();
+    }
+
+    public TitleBarView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
     public TitleBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -25,15 +34,20 @@ public class TitleBarView extends RelativeLayout {
 
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.title_bar, this);
-        ivBack = ViewUtils.getViewById(this, R.id.ivBack);
-        tvTitle = ViewUtils.getViewById(this, R.id.tvTitle);
-        tvRight = ViewUtils.getViewById(this, R.id.tvRight);
+        ivBack = findViewById(R.id.ivBack);
+        tvTitle = findViewById(R.id.tvTitle);
+        tvRight = findViewById(R.id.tvRight);
     }
 
     public void setTitleText(String titleText) {
         if (titleText != null && tvTitle != null) {
             tvTitle.setText(titleText);
+            tvTitle.setVisibility(VISIBLE);
         }
+    }
+
+    public void hideBackBtn() {
+        ivBack.setVisibility(GONE);
     }
 
     public void setRightText(String rightText) {

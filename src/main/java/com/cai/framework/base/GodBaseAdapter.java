@@ -52,7 +52,6 @@ public abstract class GodBaseAdapter<T extends CBaseData> extends BaseAdapter {
             convertView = inflater.inflate(getItemLayout(), parent, false);
         }
         initItemView(convertView,dataList.get(position),position);
-//        ViewHolder.getTextView(convertView, R.id.itemName).setText(scrollData.getName());
         return convertView;
     }
 }
