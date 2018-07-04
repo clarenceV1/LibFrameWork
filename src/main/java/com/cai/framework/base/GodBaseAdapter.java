@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.cai.framework.R;
 import com.cai.framework.bean.CBaseData;
-import com.cai.framework.utils.ViewHolder;
 
 import java.util.List;
 
