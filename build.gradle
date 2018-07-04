@@ -66,4 +66,5 @@ dependencies {
     compile project(':LibNet')
     compile project(':LibLog')
     compile project(':LibImageLoader')
+    compile project(':LibPullToRefresh')
 }
