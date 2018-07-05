@@ -51,6 +51,7 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
                 try {
                     View rootView = findViewById(android.R.id.content);
                     if (rootView != null) {
+                        rootView.setBackgroundResource(R.color.ys_24_24_24);
                         ViewGroup viewGroup = (ViewGroup) rootView;
                         if (viewGroup.getChildCount() > 0) {
                             viewGroup.getChildAt(0).setFitsSystemWindows(true);
