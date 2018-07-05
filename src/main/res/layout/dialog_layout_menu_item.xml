@@ -5,14 +5,29 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+
+    <View
+        android:id="@+id/divide"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/ys_gary"
+        android:visibility="gone" />
+
+
+    <View
+        android:id="@+id/divide2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/ys_gary"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/tvMenu"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:background="@color/white_a"
         android:gravity="center"
+        android:textColor="@color/black_a"
         android:textSize="20sp"
         tools:text="我是菜单" />
 </LinearLayout>

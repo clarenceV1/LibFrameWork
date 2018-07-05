@@ -34,6 +34,13 @@ public class BottomMenuAdapter extends GodBaseAdapter {
                 }
             });
         }
+        if (position == dataList.size() - 1) {
+            ViewHolder.getView(convertView, R.id.divide).setVisibility(View.VISIBLE);
+            ViewHolder.getView(convertView, R.id.divide2).setVisibility(View.GONE);
+        } else {
+            ViewHolder.getView(convertView, R.id.divide).setVisibility(View.GONE);
+            ViewHolder.getView(convertView, R.id.divide2).setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

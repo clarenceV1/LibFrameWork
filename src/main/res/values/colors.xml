@@ -9,4 +9,5 @@
     <color name="transparent">#00ffffff</color>
     <color name="ys_24_24_24">#181818</color>
     <color name="ys_30_30_30">#1e1e1e</color>
+    <color name="ys_gary">#e5e3e4</color>
 </resources>
