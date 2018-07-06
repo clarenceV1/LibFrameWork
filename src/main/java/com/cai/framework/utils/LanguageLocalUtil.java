@@ -43,4 +43,12 @@ public class LanguageLocalUtil {
         }
         return locale.getLanguage();
     }
+
+    public static boolean isChinese() {
+        String language = getSystemLanguage();
+        if ("zh".equals(language)) {
+            return true;
+        }
+        return false;
+    }
 }
