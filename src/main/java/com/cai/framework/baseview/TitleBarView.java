@@ -63,6 +63,11 @@ public class TitleBarView extends RelativeLayout {
         }
     }
 
+    public void setLeftClickListener(OnClickListener clickListener) {
+        if (clickListener != null) {
+            ivBack.setOnClickListener(clickListener);
+        }
+    }
     public void setBackImgIcon(int ResID) {
         ivBack.setImageResource(ResID);
         ivBack.setVisibility(View.VISIBLE);
