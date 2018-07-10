@@ -149,7 +149,11 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
             mWebView.canGoBack();
         }
     }
-
+    public void reload() {
+        if (mWebView != null) {
+            mWebView.reload();
+        }
+    }
     /**
      * 从webview里获取头部标题---webview获取头部后回调此方法
      */
