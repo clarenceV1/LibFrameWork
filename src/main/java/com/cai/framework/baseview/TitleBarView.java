@@ -50,6 +50,10 @@ public class TitleBarView extends RelativeLayout {
         ivBack.setVisibility(GONE);
     }
 
+    public void hideTitle() {
+        tvTitle.setVisibility(GONE);
+    }
+
     public void setRightText(String rightText) {
         if (tvRight != null && tvRight != null) {
             tvRight.setVisibility(VISIBLE);
@@ -68,6 +72,7 @@ public class TitleBarView extends RelativeLayout {
             ivBack.setOnClickListener(clickListener);
         }
     }
+
     public void setBackImgIcon(int ResID) {
         ivBack.setImageResource(ResID);
         ivBack.setVisibility(View.VISIBLE);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string name="loading_value">loading...</string>
+    <string name="loading_no_data">no data</string>
+    <string name="loading_net_error">Network exception, please check the network</string>
+    <string name="loading_click_tip">Click screen refresh</string>
+</resources>

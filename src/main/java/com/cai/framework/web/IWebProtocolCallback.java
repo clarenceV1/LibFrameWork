@@ -1,8 +1,7 @@
 package com.cai.framework.web;
 
-import java.util.Map;
+import android.content.Context;
 
 public interface IWebProtocolCallback {
-    void callBack(WebProtocolDO protocolDO, Map<String, String> result);
-
+    void callBack(Context context,WebProtocolDO protocolDO, int code, String error, String data);
 }

@@ -19,6 +19,10 @@ public class WebViewClientBase extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if (webViewFragment.isLoadNewActivity) {
+            WebProtocolManager.getInstall().jumpNewActivity(url);
+            return true;
+        }
         Logger.d("shouldOverrideUrlLoading: " + url);
         // 步骤2：根据协议的参数，判断是否是所需要的url
         // 一般根据scheme（协议格式） & authority（协议名）判断（前两个参数）
@@ -27,7 +31,7 @@ public class WebViewClientBase extends WebViewClient {
         if (uri.getScheme().equals("http") || uri.getScheme().equals("https")) {
             view.loadUrl(url);
             return true;
-        } else if (WebProtocolManager.getInstall().isProtocol(webViewFragment.mWebView,uri)) {
+        } else if (WebProtocolManager.getInstall().isProtocol(webViewFragment.mWebView, uri)) {
             return true;
         }
         return super.shouldOverrideUrlLoading(view, url);

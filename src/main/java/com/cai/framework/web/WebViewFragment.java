@@ -21,6 +21,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
     private String url;
     WebView mWebView;
     WebSettings webSettings;
+    boolean isLoadNewActivity;//二级页面是否要重新开启新的页面
 
     @Override
     public int getLayoutId() {
@@ -32,6 +33,14 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         initData();
         initWebView();
         initProgressBar();
+    }
+
+    public boolean isLoadNewActivity() {
+        return isLoadNewActivity;
+    }
+
+    public void setLoadNewActivity(boolean loadNewActivity) {
+        isLoadNewActivity = loadNewActivity;
     }
 
     private void initData() {
