@@ -146,6 +146,9 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     }
 
+    public WebView getWebView(){
+        return mWebView;
+    }
     public boolean canGoBack() {
         if (mWebView != null) {
             return mWebView.canGoBack();

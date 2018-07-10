@@ -20,7 +20,7 @@ import java.util.Map;
 public class WebProtocolManager {
 
     // meetone://shareQQ?param={"type"="1"} //{"type"="1"}要加密
-    private static final String PROTOCOL_SCHEME_1 = "meetone://";
+    private static final String PROTOCOL_SCHEME_1 = "meetone";
     private static final String PROTOCOL_PARAM = "param";
     private IWebProtocol iProtocol;
 

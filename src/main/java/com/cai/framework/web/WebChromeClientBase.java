@@ -50,67 +50,67 @@ public class WebChromeClientBase extends WebChromeClient {
         Logger.d("onCreateWindow: " + isDialog);
         return super.onCreateWindow(view, isDialog, isUserGesture, resultMsg);
     }
+//
+//    @Override
+//    public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
+//        new AlertDialog.Builder(context)
+//                .setTitle("Js调用警告对话框")
+//                .setMessage(message)
+//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        result.confirm();
+//                    }
+//                })
+//                .setCancelable(false)
+//                .show();
+//        return true;
+//    }
 
-    @Override
-    public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-        new AlertDialog.Builder(context)
-                .setTitle("Js调用警告对话框")
-                .setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        result.confirm();
-                    }
-                })
-                .setCancelable(false)
-                .show();
-        return true;
-    }
-
-    @Override
-    public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
-        new AlertDialog.Builder(context)
-                .setTitle("Js调用确认对话框")
-                .setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        result.confirm();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        result.cancel();
-                    }
-                })
-                .setCancelable(false)
-                .show();
-        return true;
-    }
-
-    @Override
-    public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
-        final EditText et = new EditText(context);
-        et.setText(defaultValue);
-        new AlertDialog.Builder(context)
-                .setTitle(message)
-                .setView(et)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        result.confirm(et.getText().toString());
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        result.cancel();
-                    }
-                })
-                .setCancelable(false)
-                .show();
-
-        return true;
-    }
+//    @Override
+//    public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
+//        new AlertDialog.Builder(context)
+//                .setTitle("Js调用确认对话框")
+//                .setMessage(message)
+//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        result.confirm();
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        result.cancel();
+//                    }
+//                })
+//                .setCancelable(false)
+//                .show();
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
+//        final EditText et = new EditText(context);
+//        et.setText(defaultValue);
+//        new AlertDialog.Builder(context)
+//                .setTitle(message)
+//                .setView(et)
+//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        result.confirm(et.getText().toString());
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        result.cancel();
+//                    }
+//                })
+//                .setCancelable(false)
+//                .show();
+//
+//        return true;
+//    }
 }
