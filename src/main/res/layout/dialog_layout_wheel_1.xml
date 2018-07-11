@@ -20,7 +20,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:text="取消"
-            android:textColor="@color/black_b"
+            android:textColor="@color/black_a"
             android:textSize="16sp" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:text="确定"
-            android:textColor="@color/red_b"
+            android:textColor="@color/black_a"
             android:textSize="16sp" />
 
         <TextView
