@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:textColor="@color/black_292929"
+            android:textColor="@color/black_323232"
             android:textSize="18sp"
             tools:text="标题" />
 
@@ -35,8 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/black_292929"
-                android:textSize="16sp"
+                android:textColor="@color/dialog_content"
+                android:textSize="14sp"
                 tools:text="您确定要删除么？" />
         </LinearLayout>
 
@@ -58,12 +58,12 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_dialog_left_btn"
                 android:gravity="center"
-                android:textColor="@color/black_292929"
+                android:textColor="@color/dialog_btn_ok"
                 android:textSize="16sp"
                 tools:text="确定" />
 
             <View
-                android:layout_width="1px"
+                android:layout_width="0.5dp"
                 android:layout_height="match_parent"
                 android:background="@color/item_line_color" />
 
@@ -74,7 +74,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_dialog_right_btn"
                 android:gravity="center"
-                android:textColor="@color/black_292929"
+                android:textColor="@color/dialog_btn_cancle"
                 android:textSize="16sp"
                 tools:text="取消" />
 
@@ -86,7 +86,7 @@
             android:layout_height="45dp"
             android:background="@drawable/selector_dialog_one_btn"
             android:gravity="center"
-            android:textColor="@color/black_292929"
+            android:textColor="@color/dialog_btn_one"
             android:textSize="16sp"
             android:visibility="gone"
             tools:text="确定"

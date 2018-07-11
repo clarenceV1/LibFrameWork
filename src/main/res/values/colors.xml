@@ -4,6 +4,10 @@
     <color name="title_color">#8D48FF</color>
     <color name="white">#ffffff</color>
     <color name="black_292929">#292929</color>
+    <color name="dialog_content">#292929</color>
+    <color name="dialog_btn_one">#292929</color>
+    <color name="dialog_btn_cancle">#292929</color>
+    <color name="dialog_btn_ok">#292929</color>
     <color name="item_line_color">#C8C8C8</color>
     <color name="gray_f6f6f6">#F6F6F6</color>
     <color name="transparent">#00ffffff</color>
@@ -13,4 +17,6 @@
     <color name="gray_757575">#757575</color>
     <color name="gray_A9A9A9">#A9A9A9</color>
     <color name="ys_234_205_118">#eacd76</color>
+    <color name="black_323232">#323232</color>
+    <color name="blue_C61BFD">#C61BFD</color>
 </resources>

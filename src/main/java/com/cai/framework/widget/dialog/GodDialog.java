@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -188,6 +189,7 @@ public class GodDialog extends Dialog implements View.OnClickListener {
                 dialogContentView.removeAllViews();
                 dialogContentView.addView(contentView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             } else if (!TextUtils.isEmpty(message)) {
+                tvMessage.setMovementMethod(ScrollingMovementMethod.getInstance());
                 tvMessage.setText(message);
             } else {
                 tvMessage.setVisibility(View.GONE);
