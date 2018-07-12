@@ -54,6 +54,10 @@ public class TitleBarView extends RelativeLayout {
         tvTitle.setVisibility(GONE);
     }
 
+    public void hideAll(){
+        setVisibility(GONE);
+    }
+
     public void setRightText(String rightText) {
         if (tvRight != null && tvRight != null) {
             tvRight.setVisibility(VISIBLE);
