@@ -22,6 +22,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
     WebView mWebView;
     WebSettings webSettings;
     boolean isLoadNewActivity;//二级页面是否要重新开启新的页面
+    boolean isCircleProgressBar;//是否使用转圈加载
 
     @Override
     public int getLayoutId() {
@@ -33,6 +34,10 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         initData();
         initWebView();
         initProgressBar();
+    }
+
+    public void setCircleProgressBar(boolean isCircle) {
+        isCircleProgressBar = isCircle;
     }
 
     public boolean isLoadNewActivity() {
@@ -49,6 +54,10 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     private void initProgressBar() {
         mViewBinding.progressBar.setMax(100);
+        if (isCircleProgressBar) {
+            mViewBinding.progressBar.setVisibility(View.GONE);
+            mViewBinding.circleProgressBar.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initWebView() {
@@ -146,9 +155,10 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     }
 
-    public WebView getWebView(){
+    public WebView getWebView() {
         return mWebView;
     }
+
     public boolean canGoBack() {
         if (mWebView != null) {
             return mWebView.canGoBack();
@@ -161,11 +171,13 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
             mWebView.canGoBack();
         }
     }
+
     public void reload() {
         if (mWebView != null) {
             mWebView.reload();
         }
     }
+
     /**
      * 从webview里获取头部标题---webview获取头部后回调此方法
      */

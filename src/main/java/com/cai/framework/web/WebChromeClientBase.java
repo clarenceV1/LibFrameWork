@@ -28,6 +28,7 @@ public class WebChromeClientBase extends WebChromeClient {
         fragment.mViewBinding.progressBar.setProgress(newProgress);
         if (newProgress == 100) {
             fragment.mViewBinding.progressBar.setVisibility(View.GONE);
+            fragment.mViewBinding.circleProgressBar.setVisibility(View.GONE);
         }
     }
 

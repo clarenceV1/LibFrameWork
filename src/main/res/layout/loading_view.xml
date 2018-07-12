@@ -28,13 +28,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- <ImageView
-                 android:id="@+id/loading_img_iv"
-                 android:layout_width="@dimen/dp_30"
-                 android:layout_height="@dimen/dp_30"
-                 android:background="@drawable/loading_frame"
-                 android:scaleType="fitXY" />-->
-
             <com.cai.framework.widget.CircleProgressBar
                 android:id="@+id/loading_pro_bar"
                 android:layout_width="30dp"

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/rootView"
@@ -12,14 +14,16 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="2dip"
-            android:max="100"/>
-        <!--<ProgressBar-->
-            <!--android:id="@+id/progressBar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="10dp"-->
-            <!--android:indeterminateDrawable="@drawable/progress_indeterminate_horizontal"-->
-            <!--android:indeterminateOnly="false"-->
-            <!--android:mirrorForRtl="true"-->
-            <!--android:progressDrawable="@drawable/progress_horizontal" />-->
+            android:max="100" />
+
+        <com.cai.framework.widget.CircleProgressBar
+            android:id="@+id/circleProgressBar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:mlpb_enable_circle_background="false"
+            app:mlpb_progress_color="#a9a9a9"
+            app:mlpb_progress_stoke_width="3dp" />
     </LinearLayout>
 </layout>
