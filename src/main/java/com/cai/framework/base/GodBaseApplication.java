@@ -34,8 +34,6 @@ public abstract class GodBaseApplication extends Application {
         super.onCreate();
         application = this;
 
-        GodActivityManger.getInstance().init(this);
-
         initConfig();
         LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
 
@@ -181,5 +179,13 @@ public abstract class GodBaseApplication extends Application {
     public static RefWatcher getRefWatcher(Context context) {
         GodBaseApplication application = (GodBaseApplication) context.getApplicationContext();
         return application.refWatcher;
+    }
+
+
+    public void exitApp() {
+        if (callbacks != null) {
+            callbacks.exitApp();
+        }
+        System.exit(0);
     }
 }

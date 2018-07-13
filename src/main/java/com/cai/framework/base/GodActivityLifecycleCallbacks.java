@@ -1,23 +1,16 @@
 package com.cai.framework.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
 import com.cai.framework.manager.LogDock;
-import com.facebook.stetho.common.LogUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableSource;
-import io.reactivex.Scheduler;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 
 /**
  * Created by clarence on 2018/1/11.
@@ -48,14 +41,11 @@ public class GodActivityLifecycleCallbacks implements Application.ActivityLifecy
     @Override
     public void onActivityPaused(Activity activity) {
         ++paused;
-
-        LogDock.getLog().debug("activityStack", "我在后台运行吗？" + isApplicationInForeground());
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
         ++stopped;
-        LogDock.getLog().debug("activityStack", "我在前台运行吗？" + isApplicationVisible());
     }
 
     @Override
@@ -66,11 +56,10 @@ public class GodActivityLifecycleCallbacks implements Application.ActivityLifecy
     @Override
     public void onActivityDestroyed(Activity activity) {
         store.remove(activity);
-        printLiveActivity();
     }
 
-    private void printLiveActivity() {
-        LogDock.getLog().debug("activityStack", ">>>>>>>>>>>>>>>");
+    @SuppressLint("CheckResult")
+    public void printLiveActivity() {
         Observable.fromIterable(store).subscribe(new Consumer<Activity>() {
             @Override
             public void accept(Activity activity) {
@@ -100,5 +89,11 @@ public class GodActivityLifecycleCallbacks implements Application.ActivityLifecy
      */
     public Activity getCurrentActivity() {
         return store.lastElement();
+    }
+
+    public void exitApp() {
+        for (Activity activity : store) {
+            activity.finish();
+        }
     }
 }
