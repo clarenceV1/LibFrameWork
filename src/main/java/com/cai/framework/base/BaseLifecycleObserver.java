@@ -19,36 +19,47 @@ public class BaseLifecycleObserver implements LifecycleObserver {
     public static final String CLASS_NAME = "className";
 
     public BaseLifecycleObserver() {
-        data.put(CLASS_NAME, "请设置类名");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void ON_CREATE() {
-        LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_CREATE");
+        if (data.get(CLASS_NAME) != null) {
+            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_CREATE");
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void ON_START() {
-        LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_START");
+        if (data.get(CLASS_NAME) != null) {
+            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_START");
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void ON_RESUME() {
-        LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_RESUME");
+        if (data.get(CLASS_NAME) != null) {
+            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_RESUME");
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void ON_PAUSE() {
-        LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_PAUSE");
+        if (data.get(CLASS_NAME) != null) {
+            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_PAUSE");
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void ON_STOP() {
-        LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_STOP");
+        if (data.get(CLASS_NAME) != null) {
+            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_STOP");
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void ON_DESTROY() {
-        LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_DESTROY");
+        if (data.get(CLASS_NAME) != null) {
+            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_DESTROY");
+        }
     }
 }

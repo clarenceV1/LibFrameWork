@@ -33,8 +33,10 @@ public abstract class GodBaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-        initConfig();
 
+        GodActivityManger.getInstance().init(this);
+
+        initConfig();
         LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
 
         initWebProtocol();
