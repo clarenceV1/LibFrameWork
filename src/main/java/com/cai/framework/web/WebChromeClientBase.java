@@ -11,7 +11,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.EditText;
 
+import com.cai.framework.event.WebViewEvent;
 import com.cai.lib.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class WebChromeClientBase extends WebChromeClient {
     WebViewFragment fragment;
@@ -28,7 +31,7 @@ public class WebChromeClientBase extends WebChromeClient {
         fragment.mViewBinding.progressBar.setProgress(newProgress);
         if (newProgress == 100) {
             fragment.mViewBinding.progressBar.setVisibility(View.GONE);
-            fragment.mViewBinding.circleProgressBar.setVisibility(View.GONE);
+            EventBus.getDefault().post(new WebViewEvent(WebViewEvent.TYPE_LOAD_FINISH));
         }
     }
 

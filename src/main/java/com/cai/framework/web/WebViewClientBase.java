@@ -7,10 +7,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.cai.framework.event.WebViewEvent;
 import com.cai.lib.logger.Logger;
-
-import org.greenrobot.eventbus.EventBus;
 
 public class WebViewClientBase extends WebViewClient {
 
@@ -32,7 +29,6 @@ public class WebViewClientBase extends WebViewClient {
         //假定传入进来的 url = "js://webview?arg1=111&arg2=222"（同时也是约定好的需要拦截的）
         Uri uri = Uri.parse(url);
         if (uri.getScheme().equals("http") || uri.getScheme().equals("https")) {
-            EventBus.getDefault().post(new WebViewEvent(WebViewEvent.TYPE_BTN, false));
             view.loadUrl(url);
             return true;
         } else if (WebProtocolManager.getInstall().isProtocol(webViewFragment.mWebView, uri)) {
