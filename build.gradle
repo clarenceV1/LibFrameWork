@@ -79,10 +79,7 @@ dependencies {
     compile rootProject.ext.dependencies["android-support"]
 
     compile project(':LibAnnotation')
-//    compile project(':LibDataStore')
-//    compile project(':LibUtils')
     compile project(':LibLog')
-//    compile project(':LibImageLoader')
     compile project(':LibPullToRefresh')
 
     compile(name: 'LibUtils-release', ext: 'aar')
