@@ -20,11 +20,6 @@ android {
     dataBinding {
         enabled = true
     }
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
 }
 
 dependencies {
@@ -81,6 +76,5 @@ dependencies {
     compile project(':LibAnnotation')
     compile project(':LibLog')
     compile project(':LibPullToRefresh')
-
-    compile(name: 'LibUtils-release', ext: 'aar')
+    compile project(':LibUtils')
 }
