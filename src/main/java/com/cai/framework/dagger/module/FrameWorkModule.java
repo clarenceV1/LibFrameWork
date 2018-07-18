@@ -4,12 +4,12 @@ import android.content.Context;
 
 import com.cai.framework.base.GodBaseApplication;
 import com.cai.framework.base.GodBaseConfig;
-import com.example.clarence.datastorelibrary.store.share_preference.ISharePreference;
-import com.example.clarence.datastorelibrary.store.share_preference.StoreForSharePreference;
-import com.example.clarence.imageloaderlibrary.ILoadImage;
-import com.example.clarence.imageloaderlibrary.ImageForGlide;
-import com.example.clarence.netlibrary.INet;
-import com.example.clarence.netlibrary.NetForRetrofit;
+import com.cai.framework.dataStore.ISharePreference;
+import com.cai.framework.dataStore.StoreForSharePreference;
+import com.cai.framework.http.INet;
+import com.cai.framework.http.NetForRetrofit;
+import com.cai.framework.imageload.ILoadImage;
+import com.cai.framework.imageload.ImageForGlide;
 
 import javax.inject.Singleton;
 
