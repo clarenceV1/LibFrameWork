@@ -42,6 +42,10 @@ public class VerticalScrollTextView extends RelativeLayout {
         mTextView.setTextColor(mTextView.getTextColors());
     }
 
+    public int getIndex() {
+        return mIndex;
+    }
+
     private void doAnimateLoop() {
         if (mStrList.size() >= 2) {
             mTextView.startAnimation(mAnimationDismissSet);
