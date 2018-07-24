@@ -24,6 +24,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/tbs_sdk_thirdapp.jar')
+
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["aspectjrt"]
     provided rootProject.ext.dependencies["okio"]

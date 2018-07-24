@@ -1,18 +1,13 @@
 package com.cai.framework.web;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.widget.EditText;
 
 import com.cai.framework.event.WebViewEvent;
 import com.cai.lib.logger.Logger;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebView;
 
 import org.greenrobot.eventbus.EventBus;
 

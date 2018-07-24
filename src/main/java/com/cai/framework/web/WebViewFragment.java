@@ -3,8 +3,6 @@ package com.cai.framework.web;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import com.cai.framework.R;
@@ -12,6 +10,8 @@ import com.cai.framework.base.GodBaseApplication;
 import com.cai.framework.base.GodBasePresenter;
 import com.cai.framework.base.GodBasePresenterFragment;
 import com.cai.framework.databinding.WebVewFragmentBinding;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
 
 import java.util.List;
 
@@ -115,9 +115,9 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
 
         // 特别注意：5.1以上默认禁止了https和http混用，以下方式是开启
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);//x5里面已经有判断
+//        }
     }
 
     @Override

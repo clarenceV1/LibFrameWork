@@ -5,12 +5,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
-import android.webkit.ValueCallback;
-import android.webkit.WebView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.clarence.utillibrary.Base64Utils;
 import com.example.clarence.utillibrary.PackageUtils;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebView;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -129,9 +129,9 @@ public class WebProtocolManager {
         if (Build.VERSION.SDK_INT < 19) {
             webView.loadUrl(jsUrl);//xxxxxjavascript方法名
         } else {
-            webView.evaluateJavascript(jsUrl, new ValueCallback<String>() {//xxxxxjavascript方法名
+            webView.evaluateJavascript(jsUrl, new ValueCallback<String>() {
                 @Override
-                public void onReceiveValue(String value) { //javascript 返回的结果
+                public void onReceiveValue(String value) {
                     //此处为 js 返回的结果
                     Log.d("WebViewFragment", "javascript 返回的结果" + value);
                 }

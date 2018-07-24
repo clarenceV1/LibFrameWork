@@ -2,12 +2,11 @@ package com.cai.framework.web;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.net.http.SslError;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.cai.lib.logger.Logger;
+import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 public class WebViewClientBase extends WebViewClient {
 
@@ -62,8 +61,8 @@ public class WebViewClientBase extends WebViewClient {
     }
 
     @Override
-    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-        handler.proceed();    //表示等待证书响应
+    public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, com.tencent.smtt.export.external.interfaces.SslError sslError) {
+        sslErrorHandler.proceed();    //表示等待证书响应
         // handler.cancel();      //表示挂起连接，为默认方式
         // handler.handleMessage(null);    //可做其他处理
     }

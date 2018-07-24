@@ -1,7 +1,9 @@
 package com.cai.framework.web;
 
 import android.net.Uri;
-import android.webkit.WebView;
+
+import com.tencent.smtt.sdk.WebView;
+
 
 public class WebProtocolDO {
     private WebView webView;

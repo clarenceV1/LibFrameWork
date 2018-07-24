@@ -20,9 +20,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.webkit.WebView;
 
 import com.cai.framework.pull.PullToRefreshWebView;
+import com.tencent.smtt.sdk.WebView;
 
 /**
  * An advanced version of {@link PullToRefreshWebView} which delegates the
