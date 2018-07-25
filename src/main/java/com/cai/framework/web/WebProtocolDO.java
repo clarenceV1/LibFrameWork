@@ -4,12 +4,41 @@ import android.net.Uri;
 
 import com.tencent.smtt.sdk.WebView;
 
+import java.util.Map;
+
 
 public class WebProtocolDO {
     private WebView webView;
     private String host;
-    private String params;
+    private Map<String,String> params;
+    private String scheme;
+    private String path;
+    private String authority;
     private Uri uri;
+
+    public String getPath() {
+        return path;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getScheme() {
+        return scheme;
+    }
+
+    public void setScheme(String scheme) {
+        this.scheme = scheme;
+    }
 
     public Uri getUri() {
         return uri;
@@ -35,11 +64,11 @@ public class WebProtocolDO {
         this.host = host;
     }
 
-    public String getParams() {
+    public Map<String, String> getParams() {
         return params;
     }
 
-    public void setParams(String params) {
+    public void setParams(Map<String, String> params) {
         this.params = params;
     }
 }

@@ -14,6 +14,7 @@ import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 
 import java.util.List;
+import java.util.Map;
 
 public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBinding> {
 
@@ -191,6 +192,12 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
     public void loadUrl(String url) {
         if (mWebView != null) {
             mWebView.loadUrl(url);
+        }
+    }
+
+    public void jsCallBack(String data) {
+        if (mWebView != null) {
+            WebProtocolManager.getInstall().javascriptCallBack(mWebView, WebProtocolManager.JS_CALLBACK_METHOD, data);
         }
     }
 }

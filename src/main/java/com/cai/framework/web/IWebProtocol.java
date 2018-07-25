@@ -1,7 +1,11 @@
 package com.cai.framework.web;
 
+import android.net.Uri;
+
+import com.tencent.smtt.sdk.WebView;
+
 public interface IWebProtocol {
-    void handlerProtocol(WebProtocolDO protocolDO, IWebProtocolCallback callback);
+    void handlerProtocol(WebView webView, Uri uri, IWebProtocolCallback callback);
 
     void jumpNewActivity(String url);
 }
