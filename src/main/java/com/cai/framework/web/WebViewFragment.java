@@ -1,10 +1,13 @@
 package com.cai.framework.web;
 
 import android.os.Build;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.cai.framework.R;
 import com.cai.framework.base.GodBaseApplication;
 import com.cai.framework.base.GodBasePresenter;
@@ -195,9 +198,19 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         }
     }
 
-    public void jsCallBack(String data) {
+    public void jsCallBack(Map<String, String> params) {
         if (mWebView != null) {
-            WebProtocolManager.getInstall().javascriptCallBack(mWebView, WebProtocolManager.JS_CALLBACK_METHOD, data);
+            WebProtocolDO webProtocolDO = new WebProtocolDO();
+            webProtocolDO.setWebView(mWebView);
+            if (params != null && !TextUtils.isEmpty(params.get("data"))) {
+                JSONObject jsonObject = JSON.parseObject(params.get("data"));
+                String account = jsonObject.getString("account");
+                if (account != null) {
+                    params.put("account", account);
+                    params.remove("data");
+                }
+            }
+            WebProtocolManager.getInstall().handlerProtocolResult(getContext(), webProtocolDO, params);
         }
     }
 }

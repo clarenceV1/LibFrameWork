@@ -1,9 +1,11 @@
 package com.cai.framework.event;
 
-public class WebViewJsEvent {
-    public String data;
+import java.util.Map;
 
-    public WebViewJsEvent(String data) {
-        this.data = data;
+public class WebViewJsEvent {
+   public Map<String,String> params;
+
+    public WebViewJsEvent(Map<String,String> params) {
+        this.params = params;
     }
 }

@@ -87,7 +87,9 @@ public class WebProtocolManager {
      */
     public void handlerProtocolResult(Context context, WebProtocolDO protocolDO, Map<String, String> param) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("url", protocolDO.getUri().toString());
+        if (protocolDO.getUri() != null) {
+            jsonObject.put("url", protocolDO.getUri().toString());
+        }
         jsonObject.put("version", PackageUtils.getVersionName(context));
         if (param != null) {
             jsonObject.putAll(param);
