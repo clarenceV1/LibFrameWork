@@ -3,9 +3,9 @@ package com.cai.framework.dagger.component;
 import android.content.Context;
 
 import com.cai.framework.base.GodBaseApplication;
-import com.example.clarence.datastorelibrary.store.share_preference.ISharePreference;
-import com.example.clarence.imageloaderlibrary.ILoadImage;
-import com.example.clarence.netlibrary.INet;
+import com.cai.framework.imageloaderlibrary.ILoadImage;
+import com.cai.framework.netlibrary.INet;
+import com.cai.framework.share_preference.ISharePreference;
 
 import retrofit2.Retrofit;
 
