@@ -18,11 +18,16 @@ public class SpinerPopWindow extends PopupWindow {
     private Context mContext;
     private ListView mListView;
     private BaseAdapter mAdapter;
+    private boolean isYellowBg = false;
 
     public SpinerPopWindow(Context context) {
         super(context);
         mContext = context;
         init();
+    }
+
+    public void setYellowBg(boolean yellowBg) {
+        isYellowBg = yellowBg;
     }
 
     public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener) {
@@ -34,6 +39,9 @@ public class SpinerPopWindow extends PopupWindow {
     public void setAdatper(BaseAdapter adapter) {
         mAdapter = adapter;
         if (mListView != null) {
+            if (isYellowBg) {
+                mListView.setBackgroundResource(R.drawable.jy_optionbg);
+            }
             mListView.setAdapter(mAdapter);
         }
     }
