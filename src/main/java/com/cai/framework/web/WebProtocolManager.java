@@ -95,8 +95,8 @@ public class WebProtocolManager {
             jsonObject.putAll(param);
         }
         javascriptCallBack(protocolDO.getWebView(), JS_CALLBACK_METHOD, jsonObject.toJSONString());
-    }
 
+    }
 
     /**
      * 安卓调用javascript方法

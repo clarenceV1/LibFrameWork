@@ -16,6 +16,7 @@ import com.cai.framework.databinding.WebVewFragmentBinding;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
     WebView mWebView;
     WebSettings webSettings;
     boolean isLoadNewActivity;//二级页面是否要重新开启新的页面
+    Map<String, String> extraHeaders = new HashMap<String, String>();
 
     @Override
     public int getLayoutId() {
@@ -37,6 +39,14 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         initData();
         initWebView();
         initProgressBar();
+    }
+
+    public void setExtraHeaders(Map<String, String> extraHeaders) {
+        this.extraHeaders = extraHeaders;
+    }
+
+    public void setExtraHeaders(String key, String value) {
+        extraHeaders.put(key, value);
     }
 
     public boolean isLoadNewActivity() {
@@ -70,7 +80,11 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         mWebView.setWebViewClient(mWebViewClientBase);
         mWebView.setWebChromeClient(mWebChromeClientBase);
 
-        mWebView.loadUrl(url);
+        if (extraHeaders != null && extraHeaders.size() > 0) {
+            mWebView.loadUrl(url, extraHeaders);
+        } else {
+            mWebView.loadUrl(url);
+        }
     }
 
 
@@ -127,17 +141,17 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
     @Override
     public void onResume() {
         super.onResume();
-        if (webSettings != null) {
-            webSettings.setJavaScriptEnabled(true);
-        }
+//        if (webSettings != null) {
+//            webSettings.setJavaScriptEnabled(true);
+//        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (webSettings != null) {
-            webSettings.setJavaScriptEnabled(false);
-        }
+//        if (webSettings != null) {
+//            webSettings.setJavaScriptEnabled(false);
+//        }
     }
 
     @Override
@@ -194,7 +208,11 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     public void loadUrl(String url) {
         if (mWebView != null) {
-            mWebView.loadUrl(url);
+            if (extraHeaders != null && extraHeaders.size() > 0) {
+                mWebView.loadUrl(url, extraHeaders);
+            } else {
+                mWebView.loadUrl(url);
+            }
         }
     }
 
@@ -202,14 +220,6 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         if (mWebView != null) {
             WebProtocolDO webProtocolDO = new WebProtocolDO();
             webProtocolDO.setWebView(mWebView);
-            if (params != null && !TextUtils.isEmpty(params.get("data"))) {
-                JSONObject jsonObject = JSON.parseObject(params.get("data"));
-                String account = jsonObject.getString("account");
-                if (account != null) {
-                    params.put("account", account);
-                    params.remove("data");
-                }
-            }
             WebProtocolManager.getInstall().handlerProtocolResult(getContext(), webProtocolDO, params);
         }
     }
