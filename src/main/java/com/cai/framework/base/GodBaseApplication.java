@@ -35,7 +35,7 @@ public abstract class GodBaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-
+        initToast();
         initConfig();
         LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
 
@@ -46,8 +46,6 @@ public abstract class GodBaseApplication extends Application {
         registerLifecycle();
 
         initRxBus();
-
-        initToast();
 
         initLog();
 
