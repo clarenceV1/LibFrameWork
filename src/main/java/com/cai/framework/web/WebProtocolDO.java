@@ -9,27 +9,17 @@ import java.util.Map;
 
 public class WebProtocolDO {
     private WebView webView;
-    private String host;
-    private Map<String,String> params;
+    private Map<String, String> params;
     private String scheme;
-    private String path;
-    private String authority;
+    private String domain;//自己取的名称：authority+path
     private Uri uri;
 
-    public String getPath() {
-        return path;
+    public String getDomain() {
+        return domain;
     }
 
-    public String getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public String getScheme() {
@@ -54,14 +44,6 @@ public class WebProtocolDO {
 
     public void setWebView(WebView webView) {
         this.webView = webView;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
     }
 
     public Map<String, String> getParams() {
