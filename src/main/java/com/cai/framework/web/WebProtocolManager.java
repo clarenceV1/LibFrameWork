@@ -3,6 +3,7 @@ package com.cai.framework.web;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
@@ -69,8 +70,14 @@ public class WebProtocolManager {
                 IWebProtocolCallback callback = new IWebProtocolCallback() {
                     @Override
                     public void callBack(Context context, WebProtocolDO protocolDO, int code, String error, String data) {
-                        Map<String, String> result = getResultMap(code, error, data);
-                        handlerProtocolResult(context, protocolDO, result);
+                        Map<String, String> param = getResultMap(code, error, data);
+                        if (protocolDO.getParams() != null) {
+                            String callbackId = protocolDO.getParams().get("callbackId");
+                            if (!TextUtils.isEmpty(callbackId)) {
+                                param.put("callbackId", callbackId);
+                            }
+                        }
+                        handlerProtocolResult(context, protocolDO, param);
                     }
                 };
                 iProtocol.handlerProtocol(webView, uri, callback);
@@ -87,9 +94,6 @@ public class WebProtocolManager {
      */
     public void handlerProtocolResult(Context context, WebProtocolDO protocolDO, Map<String, String> param) {
         JSONObject jsonObject = new JSONObject();
-        if (protocolDO.getUri() != null) {
-            jsonObject.put("url", protocolDO.getUri().toString());
-        }
         jsonObject.put("version", PackageUtils.getVersionName(context));
         if (param != null) {
             jsonObject.putAll(param);
