@@ -7,10 +7,10 @@ import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
 
-import com.cai.lib.logger.AndroidLogAdapter;
-import com.cai.lib.logger.FormatStrategy;
-import com.cai.lib.logger.Logger;
-import com.cai.lib.logger.PrettyFormatStrategy;
+import com.cai.framework.logger.AndroidLogAdapter;
+import com.cai.framework.logger.FormatStrategy;
+import com.cai.framework.logger.Logger ;
+import com.cai.framework.logger.PrettyFormatStrategy;
 import com.example.clarence.utillibrary.ToastUtils;
 import com.example.clarence.utillibrary.log.Log1Build;
 import com.example.clarence.utillibrary.log.LogFactory;

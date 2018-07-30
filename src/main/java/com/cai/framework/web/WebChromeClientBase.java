@@ -5,7 +5,7 @@ import android.os.Message;
 import android.view.View;
 
 import com.cai.framework.event.WebViewEvent;
-import com.cai.lib.logger.Logger;
+import com.cai.framework.logger.Logger ;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 

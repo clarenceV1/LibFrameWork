@@ -9,7 +9,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
-import com.cai.annotation.aspect.Permission;
+import com.cai.framework.annotation.aspect.Permission;
 
 import java.io.File;
 

@@ -3,7 +3,7 @@ package com.cai.framework.web;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
-import com.cai.lib.logger.Logger;
+import com.cai.framework.logger.Logger;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;

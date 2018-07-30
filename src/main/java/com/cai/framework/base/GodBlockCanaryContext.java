@@ -5,7 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import com.cai.framework.BuildConfig;
-import com.cai.lib.logger.Logger;
+import com.cai.framework.logger.Logger ;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 
 public class GodBlockCanaryContext extends BlockCanaryContext {

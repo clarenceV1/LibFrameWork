@@ -1,6 +1,6 @@
 package com.cai.framework.protocol;
 
-import com.cai.annotation.apt.ProtocolUtil;
+import com.cai.framework.annotation.apt.ProtocolUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
