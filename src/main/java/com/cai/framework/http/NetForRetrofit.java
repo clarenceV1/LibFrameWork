@@ -50,6 +50,7 @@ public class NetForRetrofit implements INet {
         okHttpBuilder = new OkHttpClient.Builder()
                 .readTimeout(30000, TimeUnit.MILLISECONDS)
                 .connectTimeout(30000, TimeUnit.MILLISECONDS)
+                .writeTimeout(30000,TimeUnit.MILLISECONDS)
                 .addInterceptor(logInterceptor)
 //                .addNetworkInterceptor(new StethoInterceptor())
                 .cache(cache)
