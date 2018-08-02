@@ -1,6 +1,7 @@
 package com.cai.framework.imageload;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
@@ -32,20 +33,33 @@ public class ImageForGlide implements ILoadImage {
 
     @Override
     public void loadImage(Context context, ILoadImageParams builder) {
-        RequestManager requestManager = Glide.with(context);
-        assemble(requestManager, builder);
+        if (context != null) {
+            RequestManager requestManager = Glide.with(context);
+            assemble(requestManager, builder);
+        }
     }
 
     @Override
     public void loadImage(FragmentActivity activity, ILoadImageParams builder) {
-        RequestManager requestManager = Glide.with(activity);
-        assemble(requestManager, builder);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (activity != null && !activity.isDestroyed()) {
+                RequestManager requestManager = Glide.with(activity);
+                assemble(requestManager, builder);
+            }
+        } else {
+            if (activity != null) {
+                RequestManager requestManager = Glide.with(activity);
+                assemble(requestManager, builder);
+            }
+        }
     }
 
     @Override
     public void loadImage(Fragment fragment, ILoadImageParams builder) {
-        RequestManager requestManager = Glide.with(fragment);
-        assemble(requestManager, builder);
+        if (fragment != null && fragment.getActivity() != null) {
+            RequestManager requestManager = Glide.with(fragment);
+            assemble(requestManager, builder);
+        }
     }
 
     private void assemble(RequestManager requestManager, ILoadImageParams builder) {
