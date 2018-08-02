@@ -68,27 +68,37 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
     private void initWebView() {
         //创建Webview
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        mWebView = new WebView(GodBaseApplication.getAppContext());
-        mWebView.setLayoutParams(params);
-//        mWebView.setBackgroundColor(getResources().getColor(R.color.ys_30_30_30));
-        mViewBinding.rootView.addView(mWebView);
+        try {
+            //部分机型在创建X5 Webview时会异常 eg.金立 M5
+            mWebView = new WebView(getContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (mWebView != null) {
+            mWebView.setLayoutParams(params);
+//          mWebView.setBackgroundColor(getResources().getColor(R.color.ys_30_30_30));
+            mViewBinding.rootView.addView(mWebView);
 
-        initWebSetting();
+            initWebSetting();
 
-        WebChromeClientBase mWebChromeClientBase = new WebChromeClientBase(this);
-        WebViewClientBase mWebViewClientBase = new WebViewClientBase(this);
-        mWebView.setWebViewClient(mWebViewClientBase);
-        mWebView.setWebChromeClient(mWebChromeClientBase);
+            WebChromeClientBase mWebChromeClientBase = new WebChromeClientBase(this);
+            WebViewClientBase mWebViewClientBase = new WebViewClientBase(this);
+            mWebView.setWebViewClient(mWebViewClientBase);
+            mWebView.setWebChromeClient(mWebChromeClientBase);
 
-        if (extraHeaders != null && extraHeaders.size() > 0) {
-            mWebView.loadUrl(url, extraHeaders);
-        } else {
-            mWebView.loadUrl(url);
+            if (extraHeaders != null && extraHeaders.size() > 0) {
+                mWebView.loadUrl(url, extraHeaders);
+            } else {
+                mWebView.loadUrl(url);
+            }
         }
     }
 
 
     private void initWebSetting() {
+        if (mWebView == null) {
+            return;
+        }
         webSettings = mWebView.getSettings();
 
         //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
