@@ -108,7 +108,7 @@ public class WebProtocolManager {
      * @param methdName javascript的方法名
      * @param param     返回给javascript 的值
      */
-    public void javascriptCallBack(WebView webView, String methdName, String param) {
+    public void javascriptCallBack(final WebView webView, String methdName, String param) {
         // Android版本变量
         // 因为该方法在 Android 4.4 版本才可使用，所以使用时需进行版本判断
         StringBuilder builder = new StringBuilder();
@@ -117,15 +117,20 @@ public class WebProtocolManager {
         builder.append("('");
         builder.append(Base64Utils.encodeToString(param));
         builder.append("')");
-        String jsUrl = builder.toString();
+        final String jsUrl = builder.toString();
         if (Build.VERSION.SDK_INT < 19) {
             webView.loadUrl(jsUrl);//xxxxxjavascript方法名
         } else {
-            webView.evaluateJavascript(jsUrl, new ValueCallback<String>() {
+            webView.post(new Runnable() {
                 @Override
-                public void onReceiveValue(String value) {
-                    //此处为 js 返回的结果
-                    Log.d("WebViewFragment", "javascript 返回的结果" + value);
+                public void run() {
+                    webView.evaluateJavascript(jsUrl, new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String value) {
+                            //此处为 js 返回的结果
+                            Log.d("WebViewFragment", "javascript 返回的结果" + value);
+                        }
+                    });
                 }
             });
         }

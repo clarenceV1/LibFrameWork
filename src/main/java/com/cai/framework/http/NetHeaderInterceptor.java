@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import okhttp3.Interceptor;
+import okhttp3.Request;
 import okhttp3.Response;
 
 /**
@@ -26,8 +27,14 @@ public class NetHeaderInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        return chain.proceed(chain.request().newBuilder()
-                .addHeader("Content-Type", "application/json")
-                .build());
+        try {
+            Request request = chain.request().newBuilder()
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            return chain.proceed(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return chain.proceed(chain.request());
     }
 }
