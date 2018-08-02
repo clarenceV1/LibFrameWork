@@ -113,7 +113,7 @@ public class PermissionUtils {
     /**
      * 显示提示对话框
      */
-    public static void showTipsDialog(final Context context) {
+    public static void showTipsDialog(final Activity context) {
         new AlertDialog.Builder(context, R.style.Theme_AppCompat_Light_Dialog_Alert)
                 .setTitle("提示信息")
                 .setMessage("当前应用缺少必要权限，该功能暂时无法使用。如若需要，请单击【确定】按钮前往设置中心进行权限授权。")

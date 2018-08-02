@@ -51,7 +51,7 @@ public class NetForRetrofit implements INet {
                 .readTimeout(30000, TimeUnit.MILLISECONDS)
                 .connectTimeout(30000, TimeUnit.MILLISECONDS)
                 .addInterceptor(logInterceptor)
-                .addNetworkInterceptor(new StethoInterceptor())
+//                .addNetworkInterceptor(new StethoInterceptor())
                 .cache(cache)
                 .hostnameVerifier(new HostnameVerifier() {
                     @Override
@@ -61,11 +61,11 @@ public class NetForRetrofit implements INet {
                 })
                 .sslSocketFactory(SocketFactory.createSSLSocketFactory());
 
-        NetHeaderInterceptor headerInterceptor = new NetHeaderInterceptor(context);
-        if (headerMap != null && headerMap.size() > 0) {
-            headerInterceptor.setHeaderMap(headerMap);
-        }
-        okHttpBuilder.addInterceptor(headerInterceptor);
+//        NetHeaderInterceptor headerInterceptor = new NetHeaderInterceptor(context);
+//        if (headerMap != null && headerMap.size() > 0) {
+//            headerInterceptor.setHeaderMap(headerMap);
+//        }
+//        okHttpBuilder.addInterceptor(headerInterceptor);
 
         retrofit = new Retrofit.Builder()
                 .client(okHttpBuilder.build())
@@ -88,10 +88,10 @@ public class NetForRetrofit implements INet {
         public Builder() {
         }
 
-        public Builder context(Map<String, String> map) {
-            headerMap = map;
-            return this;
-        }
+//        public Builder context(Map<String, String> map) {
+//            headerMap = map;
+//            return this;
+//        }
 
         public Builder context(Context val) {
             context = val;
