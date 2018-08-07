@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cai.framework.R;
-import com.example.clarence.utillibrary.ViewUtils;
 
 public class TitleBarView extends RelativeLayout {
 
