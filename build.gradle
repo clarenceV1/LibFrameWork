@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 
 android {
 
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -26,45 +26,45 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile files('libs/tbs_sdk_thirdapp.jar')
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api files('libs/tbs_sdk_thirdapp.jar')
 
-    compile rootProject.ext.dependencies["appcompat-v7"]
-    compile rootProject.ext.dependencies["aspectjrt"]
-    provided rootProject.ext.dependencies["okio"]
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["aspectjrt"]
+    compileOnly rootProject.ext.dependencies["okio"]
     //For Lifecycles, LiveData, and ViewModel
-    compile rootProject.ext.dependencies["lifecycle-runtime"]
-    compile rootProject.ext.dependencies["lifecycle-extensions"]
+    api rootProject.ext.dependencies["lifecycle-runtime"]
+    api rootProject.ext.dependencies["lifecycle-extensions"]
     annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
-    compile rootProject.ext.dependencies["dagger"]
+    api rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     //    implementation rootProject.ext.dependencies["rxbus"]
     //For Room
     //    compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
     //    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha1"
-    compile rootProject.ext.dependencies["stetho"]
-    compile rootProject.ext.dependencies["stetho-js-rhino"]
-    debugCompile rootProject.ext.dependencies["leakcanary-android"]
-    releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
-    debugCompile rootProject.ext.dependencies["blockcanary-android"]
-    releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]
-    compile rootProject.ext.dependencies["eventbus"]
-    compile rootProject.ext.dependencies["android-support-percent"]
-    compile rootProject.ext.dependencies["fastjson"]
-    compile rootProject.ext.dependencies["QR-code"]
-    compile rootProject.ext.dependencies["systembartint"]
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
-    compile rootProject.ext.dependencies["retrofit-converter-gson"]
-    compile rootProject.ext.dependencies["rxjava2"]
-    compile rootProject.ext.dependencies["rxandroid"]
-    compile rootProject.ext.dependencies["okhttp3-logging-interceptor"]
-    compile rootProject.ext.dependencies["stetho-okhttp3"]
-    compile rootProject.ext.dependencies["glide"]
-    compile rootProject.ext.dependencies["android-support"]
+    api rootProject.ext.dependencies["stetho"]
+    api rootProject.ext.dependencies["stetho-js-rhino"]
+    debugImplementation rootProject.ext.dependencies["leakcanary-android"]
+    releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
+    debugImplementation rootProject.ext.dependencies["blockcanary-android"]
+    releaseImplementation rootProject.ext.dependencies["blockcanary-no-op"]
+    api rootProject.ext.dependencies["eventbus"]
+    api rootProject.ext.dependencies["android-support-percent"]
+    api rootProject.ext.dependencies["fastjson"]
+    api rootProject.ext.dependencies["QR-code"]
+    api rootProject.ext.dependencies["systembartint"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    api rootProject.ext.dependencies["retrofit-converter-gson"]
+    api rootProject.ext.dependencies["rxjava2"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+    api rootProject.ext.dependencies["stetho-okhttp3"]
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["android-support"]
 
 //    compile project(':LibLog')
-    compile project(':LibPullToRefresh')
-    compile project(':LibUtils')
+    api project(':LibPullToRefresh')
+    api project(':LibUtils')
 //    compile project(':LibAnnotation')
 }
