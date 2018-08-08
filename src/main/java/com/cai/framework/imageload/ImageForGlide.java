@@ -4,10 +4,12 @@ import android.content.Context;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.cai.framework.R;
 
 /**
  * Created by clarence on 2018/4/9.
@@ -65,18 +67,24 @@ public class ImageForGlide implements ILoadImage {
     private void assemble(RequestManager requestManager, ILoadImageParams builder) {
         if (builder instanceof ImageForGlideParams) {
             ImageForGlideParams glideParams = (ImageForGlideParams) builder;
-            DrawableRequestBuilder drawableRequestBuilder = requestManager.load(glideParams.getUrl());
+            DrawableRequestBuilder drawableRequestBuilder;
+            if(!TextUtils.isEmpty(glideParams.getUrl())){
+                drawableRequestBuilder = requestManager.load(glideParams.getUrl());
+            }else {
+                drawableRequestBuilder = requestManager.load(glideParams.getLocal());
+            }
             if (glideParams.getTransformation() != null) {
                 drawableRequestBuilder.centerCrop().transform(glideParams.getTransformation());
             }
             if (glideParams.getError() != 0) {
                 drawableRequestBuilder.error(glideParams.getError());
+            } else {
+                drawableRequestBuilder.error(R.drawable.default_image);
             }
             if (glideParams.getPlaceholder() != 0) {
                 drawableRequestBuilder.placeholder(glideParams.getPlaceholder());
-            }
-            if (glideParams.getLocal() != 0) {
-                drawableRequestBuilder.load(glideParams.getLocal());
+            } else {
+                drawableRequestBuilder.placeholder(R.drawable.default_image);
             }
             drawableRequestBuilder.into(glideParams.getImageView());
         }
