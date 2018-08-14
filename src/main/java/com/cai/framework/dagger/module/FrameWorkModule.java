@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Interceptor;
 import retrofit2.Retrofit;
 
 /**
@@ -37,8 +38,14 @@ public class FrameWorkModule {
 
     @Provides
     @Singleton
-    public INet provideRequestNet(Context context) {
-        return new NetForRetrofit.Builder().context(context).baseUrl(GodBaseConfig.getInstance().getBaseUrl()).build();
+    public INet provideRequestNet(Context context, Interceptor interceptor) {
+        return new NetForRetrofit
+                .Builder()
+                .context(context)
+                .baseUrl(GodBaseConfig.getInstance()
+                .getBaseUrl())
+                .interceptor(interceptor)
+                .build();
     }
 
     @Provides

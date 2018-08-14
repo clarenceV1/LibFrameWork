@@ -3,8 +3,8 @@ package com.cai.framework.http;
 import android.content.Context;
 
 import java.io.IOException;
-import java.util.Map;
 
+import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -15,25 +15,24 @@ import okhttp3.Response;
 
 public class NetHeaderInterceptor implements Interceptor {
     Context context;
-    Map<String, String> headerMap;
+    Headers headers;
 
-    public NetHeaderInterceptor(Context context) {
+    public NetHeaderInterceptor(Context context, Headers headers) {
         this.context = context;
-    }
-
-    public void setHeaderMap(Map<String, String> map) {
-        this.headerMap = headerMap;
+        this.headers = headers;
     }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        try {
-            Request request = chain.request().newBuilder()
-                    .addHeader("Content-Type", "application/json")
-                    .build();
-            return chain.proceed(request);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (headers != null) {
+            try {
+                Request request = chain.request().newBuilder()
+                        .headers(headers)
+                        .build();
+                return chain.proceed(request);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return chain.proceed(chain.request());
     }

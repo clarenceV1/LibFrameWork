@@ -1,15 +1,11 @@
 package com.cai.framework.web;
 
 import android.os.Build;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.cai.framework.R;
-import com.cai.framework.base.GodBaseApplication;
 import com.cai.framework.base.GodBasePresenter;
 import com.cai.framework.base.GodBasePresenterFragment;
 import com.cai.framework.databinding.WebVewFragmentBinding;

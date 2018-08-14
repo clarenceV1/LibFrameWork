@@ -2,6 +2,7 @@ package com.cai.framework.http;
 
 import android.content.Context;
 import android.util.Log;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.File;
@@ -12,6 +13,8 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import okhttp3.Cache;
+import okhttp3.Headers;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -27,11 +30,12 @@ public class NetForRetrofit implements INet {
     private Context context;
     private String baseUrl;
     private OkHttpClient.Builder okHttpBuilder;
-    Map<String, String> headerMap;
+    private Interceptor headerInterceptor;
 
     private NetForRetrofit(Builder builder) {
         context = builder.context;
         baseUrl = builder.baseUrl;
+        headerInterceptor = builder.headerInterceptor;
         init();
     }
 
@@ -50,7 +54,7 @@ public class NetForRetrofit implements INet {
         okHttpBuilder = new OkHttpClient.Builder()
                 .readTimeout(30000, TimeUnit.MILLISECONDS)
                 .connectTimeout(30000, TimeUnit.MILLISECONDS)
-                .writeTimeout(30000,TimeUnit.MILLISECONDS)
+                .writeTimeout(30000, TimeUnit.MILLISECONDS)
                 .addInterceptor(logInterceptor)
 //                .addNetworkInterceptor(new StethoInterceptor())
                 .cache(cache)
@@ -62,11 +66,9 @@ public class NetForRetrofit implements INet {
                 })
                 .sslSocketFactory(SocketFactory.createSSLSocketFactory());
 
-//        NetHeaderInterceptor headerInterceptor = new NetHeaderInterceptor(context);
-//        if (headerMap != null && headerMap.size() > 0) {
-//            headerInterceptor.setHeaderMap(headerMap);
-//        }
-//        okHttpBuilder.addInterceptor(headerInterceptor);
+        if (headerInterceptor != null) {
+            okHttpBuilder.addInterceptor(headerInterceptor);
+        }
 
         retrofit = new Retrofit.Builder()
                 .client(okHttpBuilder.build())
@@ -84,23 +86,23 @@ public class NetForRetrofit implements INet {
     public static final class Builder {
         private Context context;
         private String baseUrl;
-        Map<String, String> headerMap;
+        private Interceptor headerInterceptor;
 
         public Builder() {
         }
 
-//        public Builder context(Map<String, String> map) {
-//            headerMap = map;
-//            return this;
-//        }
+        public Builder interceptor(Interceptor interceptor) {
+            this.headerInterceptor = interceptor;
+            return this;
+        }
 
         public Builder context(Context val) {
-            context = val;
+            this.context = val;
             return this;
         }
 
         public Builder baseUrl(String val) {
-            baseUrl = val;
+            this.baseUrl = val;
             return this;
         }
 
