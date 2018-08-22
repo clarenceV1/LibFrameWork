@@ -2,22 +2,19 @@ package com.cai.framework.base;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
 
 import com.cai.framework.logger.AndroidLogAdapter;
 import com.cai.framework.logger.FormatStrategy;
-import com.cai.framework.logger.Logger ;
+import com.cai.framework.logger.Logger;
 import com.cai.framework.logger.PrettyFormatStrategy;
 import com.example.clarence.utillibrary.ToastUtils;
 import com.example.clarence.utillibrary.log.Log1Build;
 import com.example.clarence.utillibrary.log.LogFactory;
 import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.tencent.smtt.sdk.QbSdk;
 
 /**
@@ -30,7 +27,7 @@ public abstract class GodBaseApplication extends Application {
     GodBaseConfig config;
 
     GodActivityLifecycleCallbacks callbacks;
-    private RefWatcher refWatcher;
+//    private RefWatcher refWatcher;
 
     public void onCreate() {
         super.onCreate();
@@ -184,23 +181,23 @@ public abstract class GodBaseApplication extends Application {
         }
     }
 
-    private void initLeakCanary() {
-        if (!config.isUnitTest()) {
-            refWatcher = setupLeakCanary();
-        }
-    }
+//    private void initLeakCanary() {
+//        if (!config.isUnitTest()) {
+//            refWatcher = setupLeakCanary();
+//        }
+//    }
 
-    private RefWatcher setupLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return RefWatcher.DISABLED;
-        }
-        return LeakCanary.install(this);
-    }
+//    private RefWatcher setupLeakCanary() {
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return RefWatcher.DISABLED;
+//        }
+//        return LeakCanary.install(this);
+//    }
 
-    public static RefWatcher getRefWatcher(Context context) {
-        GodBaseApplication application = (GodBaseApplication) context.getApplicationContext();
-        return application.refWatcher;
-    }
+//    public static RefWatcher getRefWatcher(Context context) {
+//        GodBaseApplication application = (GodBaseApplication) context.getApplicationContext();
+//        return application.refWatcher;
+//    }
 
 
     public void exitApp() {

@@ -36,7 +36,7 @@ dependencies {
 
     api rootProject.ext.dependencies["appcompat-v7"]
     api rootProject.ext.dependencies["aspectjrt"]
-    compileOnly rootProject.ext.dependencies["okio"]
+//    compileOnly rootProject.ext.dependencies["okio"]
     //For Lifecycles, LiveData, and ViewModel
     api rootProject.ext.dependencies["lifecycle-runtime"]
     api rootProject.ext.dependencies["lifecycle-extensions"]
@@ -49,8 +49,8 @@ dependencies {
     //    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha1"
     api rootProject.ext.dependencies["stetho"]
     api rootProject.ext.dependencies["stetho-js-rhino"]
-    debugImplementation rootProject.ext.dependencies["leakcanary-android"]
-    releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
+//    debugImplementation rootProject.ext.dependencies["leakcanary-android"]
+//    releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
     debugImplementation rootProject.ext.dependencies["blockcanary-android"]
     releaseImplementation rootProject.ext.dependencies["blockcanary-no-op"]
     api rootProject.ext.dependencies["eventbus"]
