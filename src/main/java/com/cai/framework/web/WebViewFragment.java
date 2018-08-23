@@ -1,5 +1,7 @@
 package com.cai.framework.web;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import com.cai.framework.R;
 import com.cai.framework.base.GodBasePresenter;
 import com.cai.framework.base.GodBasePresenterFragment;
 import com.cai.framework.databinding.WebVewFragmentBinding;
+import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 
@@ -81,7 +84,15 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
             WebViewClientBase mWebViewClientBase = new WebViewClientBase(this);
             mWebView.setWebViewClient(mWebViewClientBase);
             mWebView.setWebChromeClient(mWebChromeClientBase);
-
+            mWebView.setDownloadListener(new DownloadListener() {
+                @Override
+                public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimeType, long contentLength) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                }
+            });
             if (extraHeaders != null && extraHeaders.size() > 0) {
                 mWebView.loadUrl(url, extraHeaders);
             } else {
