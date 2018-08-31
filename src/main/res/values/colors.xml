@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--baselayout的颜色样式-->
-    <color name="title_color">#8D48FF</color>
+    <color name="title_color">#3C92FF</color>
     <color name="white">#ffffff</color>
     <color name="black_292929">#292929</color>
     <color name="dialog_content">#292929</color>
