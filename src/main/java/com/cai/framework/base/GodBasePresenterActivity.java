@@ -40,7 +40,9 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
     }
 
     private void initStateBar() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
         if (!DeviceUtils.isFullScreen(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 setTranslucentStatus(true);
@@ -64,7 +66,6 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
         }
     }
 
-    @TargetApi(19)
     public void setTranslucentStatus(boolean on) {
         Window win = getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
