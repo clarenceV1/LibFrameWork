@@ -5,4 +5,5 @@ package com.cai.framework.bean;
  */
 
 public interface CBaseData {
+    
 }
