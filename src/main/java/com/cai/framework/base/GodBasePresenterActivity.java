@@ -1,7 +1,6 @@
 package com.cai.framework.base;
 
 
-import android.annotation.TargetApi;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.content.pm.ActivityInfo;
@@ -28,12 +27,17 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
     private List<GodBasePresenter> observerList = new ArrayList<>();
     private SystemBarTintManager tintManager;
+    public ViewGroup rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initStateBar();
+        rootView = findViewById(android.R.id.content);
+        if (rootView != null) {
+            rootView.setBackgroundResource(com.cai.framework.R.color.white_a);
+        }
         initDagger();
         initPresenter();
         initView();
