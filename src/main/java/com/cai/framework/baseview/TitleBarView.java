@@ -53,10 +53,11 @@ public class TitleBarView extends RelativeLayout {
         tvTitle.setVisibility(GONE);
     }
 
-    public void hideAll(){
+    public void hideAll() {
         setVisibility(GONE);
     }
-    public void hideRightTextView(){
+
+    public void hideRightTextView() {
         tvRight.setVisibility(GONE);
     }
 
@@ -112,5 +113,9 @@ public class TitleBarView extends RelativeLayout {
                 }
             }
         });
+    }
+
+    public TextView getRightTextView() {
+        return tvRight;
     }
 }
