@@ -1,6 +1,7 @@
 package com.cai.framework.base;
 
 
+import android.app.Activity;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.databinding.ViewDataBinding;
@@ -17,11 +18,14 @@ public abstract class GodBasePresenterFragment<M extends ViewDataBinding> extend
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
     private List<GodBasePresenter> observerList = new ArrayList<>();
 
+    protected Activity activity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        activity = getActivity();
         initDagger();
         super.onCreate(savedInstanceState);
         initPresenter();
+
     }
 
     private void initPresenter() {
