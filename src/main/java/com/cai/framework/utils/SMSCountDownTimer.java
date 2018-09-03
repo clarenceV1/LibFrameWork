@@ -1,13 +1,17 @@
 package com.cai.framework.utils;
 
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
  * 短信验证码倒计时
  */
 public class SMSCountDownTimer extends CountDownTimer {
-    TextView textView;//显示倒计时的控件
+    View view;//显示倒计时的控件
+
+    String oldText;
 
     /**
      * @param millisInFuture    The number of millis in the future from the call
@@ -16,23 +20,29 @@ public class SMSCountDownTimer extends CountDownTimer {
      * @param countDownInterval The interval along the way to receive
      *                          {@link #onTick(long)} callbacks.
      */
-    public SMSCountDownTimer(TextView textView, long millisInFuture, long countDownInterval) {
+    public SMSCountDownTimer(View view, long millisInFuture, long countDownInterval) {
         super(millisInFuture, countDownInterval);
-        this.textView = textView;
+        this.view = view;
+        this.view.setClickable(false);
+        this.view.setEnabled(false);
+        this.oldText = ((this.view instanceof TextView ? (TextView) view:(Button) view)).getText().toString();
+        start();
     }
 
     @Override
     public void onTick(long millisUntilFinished) {
         //防止计时过程中重复点击
-        textView.setClickable(false);
-        textView.setText(millisUntilFinished / 1000 + "s后重新获取");
+//        view.setText(millisUntilFinished / 1000 + "s后重新获取");
+        ((this.view instanceof TextView ? (TextView) view:(Button) view)).setText(millisUntilFinished / 1000 + "s");
     }
 
     @Override
     public void onFinish() {
 //重新给Button设置文字
-        textView.setText("重新获取");
+//        view.setText("重新获取");
+        ((this.view instanceof TextView ? (TextView) view:(Button) view)).setText(oldText);
         //设置可点击
-        textView.setClickable(true);
+        view.setClickable(true);
+        view.setEnabled(true);
     }
 }
