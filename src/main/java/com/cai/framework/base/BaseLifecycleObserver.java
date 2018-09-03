@@ -3,9 +3,7 @@ package com.cai.framework.base;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
-
-import com.cai.framework.manager.LogDock;
-import com.example.clarence.utillibrary.log.LogFactory;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,42 +22,42 @@ public class BaseLifecycleObserver implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void ON_CREATE() {
         if (data.get(CLASS_NAME) != null) {
-            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_CREATE");
+            Log.d("LifecycleObserver", data.get(CLASS_NAME).toString()+":ON_CREATE");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void ON_START() {
         if (data.get(CLASS_NAME) != null) {
-            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_START");
+            Log.d("LifecycleObserver", data.get(CLASS_NAME).toString()+":ON_START");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void ON_RESUME() {
         if (data.get(CLASS_NAME) != null) {
-            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_RESUME");
+            Log.d("LifecycleObserver", data.get(CLASS_NAME).toString()+":ON_RESUME");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void ON_PAUSE() {
         if (data.get(CLASS_NAME) != null) {
-            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_PAUSE");
+            Log.d("LifecycleObserver", data.get(CLASS_NAME).toString()+":ON_PAUSE");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void ON_STOP() {
         if (data.get(CLASS_NAME) != null) {
-            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_STOP");
+            Log.d("LifecycleObserver", data.get(CLASS_NAME).toString()+":ON_STOP");
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void ON_DESTROY() {
         if (data.get(CLASS_NAME) != null) {
-            LogDock.getLog().debug("LifecycleObserver", data.get(CLASS_NAME).toString(), ":ON_DESTROY");
+            Log.d("LifecycleObserver", data.get(CLASS_NAME).toString()+":ON_DESTROY");
         }
     }
 }

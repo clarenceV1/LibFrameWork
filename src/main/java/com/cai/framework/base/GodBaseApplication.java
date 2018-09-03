@@ -11,8 +11,6 @@ import com.cai.framework.logger.FormatStrategy;
 import com.cai.framework.logger.Logger;
 import com.cai.framework.logger.PrettyFormatStrategy;
 import com.example.clarence.utillibrary.ToastUtils;
-import com.example.clarence.utillibrary.log.Log1Build;
-import com.example.clarence.utillibrary.log.LogFactory;
 import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.tencent.smtt.sdk.QbSdk;
@@ -33,8 +31,7 @@ public abstract class GodBaseApplication extends Application {
         super.onCreate();
         application = this;
         initToast();
-        initConfig();
-        LogFactory.getInsatance().init(new Log1Build(this).setDebug(config.isDebug()));
+        initGlobalConfig(GodBaseConfig.getInstance());
 
         initWebviewX5();
 
@@ -75,17 +72,13 @@ public abstract class GodBaseApplication extends Application {
         QbSdk.initX5Environment(getApplicationContext(),  cb);
     }
 
-    private void initConfig() {
-        config = GodBaseConfig.getInstance();
-        config.setDebug(isDebug());
-        config.setBaseUrl(getBaseUrl());
-    }
-
     public abstract void initWebProtocol();
 
-    public abstract String getBaseUrl();
-
-    public abstract boolean isDebug();
+    /**
+     * 初始化全局配置
+     * @param config
+     */
+    public abstract void initGlobalConfig(GodBaseConfig config);
 
     private void initLog() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
@@ -176,7 +169,7 @@ public abstract class GodBaseApplication extends Application {
     }
 
     private void initStetho() {
-        if (!config.isUnitTest()) {
+        if (!config.isDebug()) {
             Stetho.initializeWithDefaults(this);
         }
     }

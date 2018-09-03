@@ -1,16 +1,10 @@
 package com.cai.framework.base;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
-import com.cai.framework.manager.LogDock;
-
 import java.util.Stack;
-
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by clarence on 2018/1/11.
@@ -56,21 +50,6 @@ public class GodActivityLifecycleCallbacks implements Application.ActivityLifecy
     @Override
     public void onActivityDestroyed(Activity activity) {
         store.remove(activity);
-    }
-
-    @SuppressLint("CheckResult")
-    public void printLiveActivity() {
-        Observable.fromIterable(store).subscribe(new Consumer<Activity>() {
-            @Override
-            public void accept(Activity activity) {
-                LogDock.getLog().debug("activityStack", "name: ", activityInfo(activity));
-            }
-        });
-    }
-
-    public String activityInfo(Activity activity) {
-        return activity.getClass().getSimpleName();
-
     }
 
     public boolean isApplicationVisible() {
