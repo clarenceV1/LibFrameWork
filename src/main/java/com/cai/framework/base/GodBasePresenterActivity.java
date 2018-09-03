@@ -26,7 +26,7 @@ import java.util.List;
 public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extends DataBindingActivity<M> implements LifecycleRegistryOwner {
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
     private List<GodBasePresenter> observerList = new ArrayList<>();
-    private SystemBarTintManager tintManager;
+    public SystemBarTintManager tintManager;
     public ViewGroup rootView;
 
     @Override
