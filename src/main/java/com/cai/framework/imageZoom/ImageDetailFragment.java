@@ -62,7 +62,6 @@ public class ImageDetailFragment extends Fragment {
     }
 
     private void loadImage() {
-           mImageUrl ="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536152402935&di=42227108a8332874c2c26652a7f3abe8&imgtype=0&src=http%3A%2F%2Fwww.beihaiting.com%2Fuploads%2Fallimg%2F170312%2F10723-1F3121JK4360.jpg";
         simpleTarget = new SimpleTarget<Bitmap>(SimpleTarget.SIZE_ORIGINAL, SimpleTarget.SIZE_ORIGINAL) {
             @Override
             public void onLoadStarted(Drawable placeholder) {
