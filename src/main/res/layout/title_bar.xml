@@ -29,7 +29,7 @@
         android:layout_alignParentRight="true"
         android:gravity="center"
         android:paddingRight="20dp"
-        android:textColor="@color/title_color"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:visibility="gone"
         tools:text="right" />
