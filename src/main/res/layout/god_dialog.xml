@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:background="@drawable/shape_dialog_bg"
         android:orientation="vertical">
 
@@ -17,11 +17,11 @@
             android:id="@+id/dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:textColor="@color/black_323232"
-            android:textSize="18sp"
+            android:textColor="@color/title_color"
+            android:textSize="15sp"
             tools:text="标题" />
 
         <LinearLayout
@@ -39,13 +39,13 @@
                 android:gravity="center"
                 android:maxHeight="212dp"
                 android:textColor="@color/dialog_content"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 tools:text="您确定要删除么？" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="1dp"
             android:layout_marginTop="10dp"
             android:background="@color/item_line_color" />
 
@@ -63,11 +63,11 @@
                 android:background="@drawable/selector_dialog_left_btn"
                 android:gravity="center"
                 android:textColor="@color/dialog_btn_cancle"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 tools:text="取消" />
 
             <View
-                android:layout_width="0.5dp"
+                android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/item_line_color" />
 
@@ -79,7 +79,7 @@
                 android:background="@drawable/selector_dialog_right_btn"
                 android:gravity="center"
                 android:textColor="@color/dialog_btn_ok"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 tools:text="确定" />
         </LinearLayout>
 
@@ -89,8 +89,8 @@
             android:layout_height="45dp"
             android:background="@drawable/selector_dialog_one_btn"
             android:gravity="center"
-            android:textColor="@color/dialog_btn_one"
-            android:textSize="16sp"
+            android:textColor="@color/dialog_btn_ok"
+            android:textSize="15sp"
             android:visibility="gone"
             tools:text="确定"
             tools:visibility="visible" />

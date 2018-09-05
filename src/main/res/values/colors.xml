@@ -4,10 +4,10 @@
     <color name="title_color">#000000</color>
     <color name="white">#ffffff</color>
     <color name="black_292929">#292929</color>
-    <color name="dialog_content">#292929</color>
+    <color name="dialog_content">#666666</color>
     <color name="dialog_btn_one">#292929</color>
-    <color name="dialog_btn_cancle">#292929</color>
-    <color name="dialog_btn_ok">#292929</color>
+    <color name="dialog_btn_cancle">#085d8d</color>
+    <color name="dialog_btn_ok">#333333</color>
     <color name="item_line_color">#C8C8C8</color>
     <color name="gray_f6f6f6">#F6F6F6</color>
     <color name="transparent">#00ffffff</color>
