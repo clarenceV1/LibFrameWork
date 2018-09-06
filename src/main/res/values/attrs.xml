@@ -137,5 +137,13 @@
 
 
 
+    <declare-styleable name="EditAttrs">
+        <attr name="showSearch" format="boolean" />
+        <attr name="showDelete" format="boolean" />
+        <attr name="greyDeleteIcon" format="boolean" />
+    </declare-styleable>
+
+
+
 
 </resources>
