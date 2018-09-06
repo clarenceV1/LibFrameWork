@@ -174,12 +174,12 @@ public class GodDialog extends Dialog implements View.OnClickListener {
             View layout = inflater.inflate(R.layout.god_dialog, null);
 
             // set the dialog title
-            TextView tvTitile = layout.findViewById(R.id.dialog_title);
+            TextView tvTitle = layout.findViewById(R.id.dialog_title);
             if (TextUtils.isEmpty(title)) {
-                tvTitile.setVisibility(View.GONE);
+                tvTitle.setVisibility(View.GONE);
             } else {
-                tvTitile.setText(title);
-                tvTitile.setVisibility(View.VISIBLE);
+                tvTitle.setText(title);
+                tvTitle.setVisibility(View.VISIBLE);
             }
 
             // set the content message
