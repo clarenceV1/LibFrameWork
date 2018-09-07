@@ -1,6 +1,7 @@
 package com.cai.framework.baseview;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,14 @@ public class TitleBarView extends RelativeLayout {
         if (tvRight != null && tvRight != null) {
             tvRight.setVisibility(VISIBLE);
             tvRight.setText(rightText);
+        }
+    }
+
+
+    public void setRightImage(Drawable drawable) {
+        if (tvRight != null && tvRight != null) {
+            tvRight.setVisibility(VISIBLE);
+            tvRight.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
         }
     }
 
