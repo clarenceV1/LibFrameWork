@@ -4,7 +4,6 @@ package com.cai.framework.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -75,12 +74,12 @@ public class CustomEditText extends AppCompatEditText {
 
     public Drawable resourceToDrawable(int resource) {
 
-        return ContextCompat.getDrawable(getContext(), resource);
+        return getResources().getDrawable(resource);
     }
 
     TextWatcher listener;
 
-    public void addTextChangedListener(TextWatcher listener) {
+    public void onChangedListener(TextWatcher listener) {
         this.listener =listener;
     }
 
