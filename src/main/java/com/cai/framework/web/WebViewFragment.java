@@ -93,6 +93,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
                     startActivity(intent);
                 }
             });
+
             if (extraHeaders != null && extraHeaders.size() > 0) {
                 mWebView.loadUrl(url, extraHeaders);
             } else {
@@ -128,7 +129,12 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
         }
-
+        webSettings.setDomStorageEnabled(true);  // 开启 DOM storage 功能
+        webSettings.setAppCacheMaxSize(1024*1024*8);
+        String appCachePath = getContext().getCacheDir().getAbsolutePath();
+        webSettings.setAppCachePath(appCachePath);
+        webSettings.setAllowFileAccess(true);    // 可以读取文件缓存
+        webSettings.setAppCacheEnabled(true);
         //缓存模式如下：
         //LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
         //LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
