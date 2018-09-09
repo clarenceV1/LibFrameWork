@@ -67,6 +67,7 @@ dependencies {
     api rootProject.ext.dependencies["stetho-okhttp3"]
     api rootProject.ext.dependencies["glide"]
     api rootProject.ext.dependencies["android-support"]
+    api rootProject.ext.dependencies["pickerView"]
 
 //    compile project(':LibLog')
     api project(':LibPullToRefresh')
