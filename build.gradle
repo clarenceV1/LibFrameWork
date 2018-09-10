@@ -57,7 +57,7 @@ dependencies {
     api rootProject.ext.dependencies["android-support-percent"]
     api rootProject.ext.dependencies["fastjson"]
     api rootProject.ext.dependencies["QR-code"]
-    api rootProject.ext.dependencies["systembartint"]
+//    api rootProject.ext.dependencies["systembartint"]
     api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
     api rootProject.ext.dependencies["retrofit-converter-gson"]

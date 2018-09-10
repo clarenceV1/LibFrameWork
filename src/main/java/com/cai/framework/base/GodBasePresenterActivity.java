@@ -1,21 +1,13 @@
 package com.cai.framework.base;
 
 
-import android.annotation.TargetApi;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.content.pm.ActivityInfo;
 import android.databinding.ViewDataBinding;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 
-import com.cai.framework.R;
-import com.example.clarence.utillibrary.DeviceUtils;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.cai.framework.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,54 +19,22 @@ import java.util.List;
 public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extends DataBindingActivity<M> implements LifecycleRegistryOwner {
     private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
     private List<GodBasePresenter> observerList = new ArrayList<>();
-    private SystemBarTintManager tintManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        initStateBar();
+//        initStateBar();
+        StatusBarUtil.setRootViewFitsSystemWindows(this,true);
+        StatusBarUtil.setTranslucentStatus(this);
+        if (!StatusBarUtil.setStatusBarDarkTheme(this, true)) {
+            //如果不支持设置深色风格 为了兼容总不能让状态栏白白的看不清, 于是设置一个状态栏颜色为半透明,
+            //这样半透明+白=灰, 状态栏的文字能看得清
+            StatusBarUtil.setStatusBarColor(this,0x55000000);
+        }
         initDagger();
         initPresenter();
         initView();
-    }
-
-    private void initStateBar() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        if (!DeviceUtils.isFullScreen(this)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                setTranslucentStatus(true);
-                tintManager = new SystemBarTintManager(this);
-                tintManager.setStatusBarTintEnabled(true);
-                tintManager.setTintColor(getResources().getColor(R.color.black_a));
-                setStatusBar(tintManager);
-                try {
-                    View rootView = findViewById(android.R.id.content);
-                    if (rootView != null) {
-                        rootView.setBackgroundResource(R.color.ys_24_24_24);
-                        ViewGroup viewGroup = (ViewGroup) rootView;
-                        if (viewGroup.getChildCount() > 0) {
-                            viewGroup.getChildAt(0).setFitsSystemWindows(true);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    @TargetApi(19)
-    public void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
     }
 
     private void initPresenter() {
@@ -87,9 +47,6 @@ public abstract class GodBasePresenterActivity<M extends ViewDataBinding> extend
             }
         }
     }
-
-    public abstract void setStatusBar(SystemBarTintManager tintManager);
-
     public abstract void initDagger();
 
     public abstract void addPresenters(List<GodBasePresenter> observerList);
