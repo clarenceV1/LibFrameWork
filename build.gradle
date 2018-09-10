@@ -68,6 +68,7 @@ dependencies {
     api rootProject.ext.dependencies["glide"]
     api rootProject.ext.dependencies["android-support"]
     api rootProject.ext.dependencies["pickerView"]
+    api rootProject.ext.dependencies["wheelview"]
 
 //    compile project(':LibLog')
     api project(':LibPullToRefresh')
