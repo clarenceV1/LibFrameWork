@@ -27,7 +27,7 @@ import java.util.Hashtable;
 public class QRCodeCreat {
 
     //二维码生成
-    public static void createQRcode(Context context, File file, String inviteUrl) {
+    public static void createQRcode(File file, String inviteUrl) {
         try {
             createLogoQRImage(inviteUrl, 270, null, null/*QRCodeCreat.resourceToBitmap(context, R.color.white)*/, file);
         } catch (Exception e) {
