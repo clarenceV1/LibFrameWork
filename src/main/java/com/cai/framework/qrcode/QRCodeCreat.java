@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.TextUtils;
 
+import com.cai.framework.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.common.BitMatrix;
@@ -26,9 +27,18 @@ import java.util.Hashtable;
 public class QRCodeCreat {
 
     //二维码生成
-    public static void createQRcode(File file, String inviteUrl) {
+    public static void createQRcode(Context context, File file, String inviteUrl) {
         try {
-            createLogoQRImage(inviteUrl, 270, null, null /*QRCodeCreat.resourceToBitmap(context, R.drawable.qcode_bg)*/, file);
+            createLogoQRImage(inviteUrl, 270, null, null/*QRCodeCreat.resourceToBitmap(context, R.color.white)*/, file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //二维码生成
+    public static void createQRcode(Context context, int iconResourceId, File file, String inviteUrl) {
+        try {
+            createLogoQRImage(inviteUrl, 270, QRCodeCreat.resourceToBitmap(context, iconResourceId), null/*QRCodeCreat.resourceToBitmap(context, R.color.white)*/, file);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,9 +63,8 @@ public class QRCodeCreat {
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
             //容错级别
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-            hints.put(EncodeHintType.MARGIN, 1);
             //设置空白边距的宽度
-//            hints.put(EncodeHintType.MARGIN, 2); //default is 4
+            hints.put(EncodeHintType.MARGIN, 1); //default is 4
 
             // 图像数据转换，使用了矩阵转换
             BitMatrix bitMatrix = new QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, size, size, hints);
