@@ -35,6 +35,10 @@ public class RxPermissions {
         mRxPermissionsFragment = getLazySingleton(fragment.getChildFragmentManager());
     }
 
+    public RxPermissions(@NonNull final FragmentManager fragmentManager) {
+        mRxPermissionsFragment = getLazySingleton(fragmentManager);
+    }
+
     @NonNull
     private Lazy<RxPermissionsFragment> getLazySingleton(@NonNull final FragmentManager fragmentManager) {
         return new Lazy<RxPermissionsFragment>() {
