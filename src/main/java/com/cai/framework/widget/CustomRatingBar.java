@@ -167,6 +167,8 @@ public class CustomRatingBar extends LinearLayout {
         setStar(starStep);
     }
 
+
+
     /**
      * 设置每颗星星的参数
      */
@@ -215,6 +217,11 @@ public class CustomRatingBar extends LinearLayout {
         if (fPoint > 0) {
             ((ImageView) getChildAt(fint)).setImageDrawable(starHalfDrawable);
         }
+    }
+
+    public float getStarStep(){
+
+        return this.starStep;
     }
 
     /**
