@@ -26,6 +26,7 @@ public class SMSCountDownTimer extends CountDownTimer {
         this.view.setClickable(false);
         this.view.setEnabled(false);
         this.oldText = ((this.view instanceof TextView ? (TextView) view:(Button) view)).getText().toString();
+        isfinish = false;
         start();
     }
 
@@ -36,6 +37,7 @@ public class SMSCountDownTimer extends CountDownTimer {
         ((this.view instanceof TextView ? (TextView) view:(Button) view)).setText(millisUntilFinished / 1000 + "s");
     }
 
+    boolean isfinish = false;
     @Override
     public void onFinish() {
 //重新给Button设置文字
@@ -44,5 +46,12 @@ public class SMSCountDownTimer extends CountDownTimer {
         //设置可点击
         view.setClickable(true);
         view.setEnabled(true);
+        isfinish = true;
+    }
+
+
+    public boolean isFinish(){
+
+        return isfinish;
     }
 }
