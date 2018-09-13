@@ -10,6 +10,7 @@ import com.cai.framework.logger.AndroidLogAdapter;
 import com.cai.framework.logger.FormatStrategy;
 import com.cai.framework.logger.Logger;
 import com.cai.framework.logger.PrettyFormatStrategy;
+import com.cai.framework.utils.CrashHandler;
 import com.example.clarence.utillibrary.ToastUtils;
 import com.example.clarence.utillibrary.log.Log1Build;
 import com.example.clarence.utillibrary.log.LogFactory;
@@ -45,6 +46,8 @@ public abstract class GodBaseApplication extends Application {
         initRxBus();
 
         initLog();
+
+        CrashHandler.getInstance().init();
 
 //        initStetho();
 //
