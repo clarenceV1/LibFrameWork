@@ -11,6 +11,8 @@ import com.cai.framework.R;
 import com.cai.framework.base.GodBasePresenter;
 import com.cai.framework.base.GodBasePresenterFragment;
 import com.cai.framework.databinding.WebVewFragmentBinding;
+import com.example.clarence.utillibrary.DimensUtils;
+import com.example.clarence.utillibrary.StringUtils;
 import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -22,11 +24,16 @@ import java.util.Map;
 public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBinding> {
 
     public static final String KEY_RUL = "URL";
+
+    public static final String HTML_DATA = "htmlData";
+
+
     private String url;
+    private String htmlData;
     WebView mWebView;
     WebSettings webSettings;
     boolean isLoadNewActivity;//二级页面是否要重新开启新的页面
-    Map<String, String> extraHeaders = new HashMap<String, String>();
+    Map<String, String> extraHeaders = new HashMap<>();
 
     @Override
     public int getLayoutId() {
@@ -58,6 +65,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
     private void initData() {
         url = getArguments().getString(KEY_RUL);
+        htmlData = getArguments().getString(HTML_DATA);
     }
 
     private void initProgressBar() {
@@ -77,9 +85,7 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
             mWebView.setLayoutParams(params);
 //          mWebView.setBackgroundColor(getResources().getColor(R.color.ys_30_30_30));
             mViewBinding.rootView.addView(mWebView);
-
             initWebSetting();
-
             WebChromeClientBase mWebChromeClientBase = new WebChromeClientBase(this);
             WebViewClientBase mWebViewClientBase = new WebViewClientBase(this);
             mWebView.setWebViewClient(mWebViewClientBase);
@@ -93,11 +99,16 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
                     startActivity(intent);
                 }
             });
-            if (extraHeaders != null && extraHeaders.size() > 0) {
-                mWebView.loadUrl(url, extraHeaders);
-            } else {
-                mWebView.loadUrl(url);
+            if (!StringUtils.isEmpty(url)) {
+                if (extraHeaders != null && extraHeaders.size() > 0) {
+                    mWebView.loadUrl(url, extraHeaders);
+                } else {
+                    mWebView.loadUrl(url);
+                }
+            } else if (!StringUtils.isEmpty(htmlData)) {
+                mWebView.loadDataWithBaseURL(null, htmlData, "text/html", "utf-8", null);
             }
+
         }
     }
 
@@ -107,7 +118,6 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
             return;
         }
         webSettings = mWebView.getSettings();
-
         //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
         webSettings.setJavaScriptEnabled(true);
         // 若加载的 html 里有JS 在执行动画等操作，会造成资源浪费（CPU、电量）
@@ -118,6 +128,8 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
 
         //设置自适应屏幕，两者合用
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSettings.setTextSize(WebSettings.TextSize.LARGEST);//
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR_MR1) {
             webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
         }
@@ -128,6 +140,9 @@ public class WebViewFragment extends GodBasePresenterFragment<WebVewFragmentBind
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
         }
+
+
+
 
         //缓存模式如下：
         //LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
